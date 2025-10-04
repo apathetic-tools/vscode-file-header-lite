@@ -68,8 +68,11 @@
     "format": "prettier --write .",
     "check": "pnpm run lint:prettier && pnpm run lint:eslint && pnpm run lint:tsc",
     "lint:prettier": "prettier --check .",
+    "lint:eslint": "eslint . --ext .ts",
     "lint:tsc": "tsc --noEmit",
-    "lint:eslint": "eslint . --ext .ts"
+    "fix": "pnpm run lint:fix:prettier && pnpm run lint:fix:eslint && pnpm run lint:tsc",
+    "lint:prettier:fix": "prettier --write .",
+    "lint:fix:eslint": "eslint . --ext .ts --fix"
   },
   "devDependencies": {
     "@types/node": "^24.6.2",
@@ -88,7 +91,7 @@
   "lint-staged": {
     "*.ts": [
       "prettier --write",
-      "eslint --fix"
+      "eslint --ext .ts --fix"
     ],
     "*.{json,.jsonc,md,mdx,yml,yaml}": [
       "prettier --write"

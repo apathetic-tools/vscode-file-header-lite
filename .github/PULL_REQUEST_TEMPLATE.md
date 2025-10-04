@@ -29,7 +29,8 @@ Please use this template to make sure your PR is easy to review.
 
 <!--
 
-💡 **Note**: Commits are auto-formatted and linted via Husky + lint-staged.
-So you may see cleaner diffs than your original edits.
+💡 **Notes for contributors**:
+- Commits are auto-formatted and linted via Husky + lint-staged, so diffs may look cleaner than your raw edits.
+- If CI fails due to formatting or lint errors, run `pnpm fix` and push again.
 
 -->

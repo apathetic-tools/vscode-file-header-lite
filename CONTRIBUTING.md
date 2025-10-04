@@ -48,6 +48,27 @@ This launches a new **Extension Development Host** with the extension loaded.
 - If Prettier or ESLint make fixes, just re-add the files and commit again.
 - This ensures a consistent code style across the project.
 
+## Fixing formatting or lint issues
+
+Our pre-commit hooks automatically run **Prettier** and **ESLint** on changed files, so most of the time you won’t need to worry about formatting.
+
+However, if CI fails because of formatting or lint issues in files you didn’t touch, run:
+
+```sh
+pnpm fix
+```
+
+This will apply Prettier and ESLint fixes to the entire codebase.
+After running it, re-commit and push your branch:
+
+```sh
+git add .
+git commit -m "chore: apply fixes"
+git push
+```
+
+CI will then pass.
+
 ## Packaging
 
 Build a `.vsix` package for local testing or publishing:
