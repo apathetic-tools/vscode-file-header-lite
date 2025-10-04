@@ -1,0 +1,44 @@
+# .eslintignore
+
+# Build output
+dist/
+out/
+*.tsbuildinfo
+*.vsix
+
+# Dependencies
+.pnpm-store
+node_modules/
+.pnpm/
+package-lock.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*:Zone.Identifier
+
+# Cache
+.cache
+
+# Cached requests / tool caches
+.cache
+.textlintcache
+.lintstagedrc.cache
+.cache/lint-staged
+.eslintcache
+.stylelintcache
+
+# Fonts / other generated assets
+**/_fonts/brand/
