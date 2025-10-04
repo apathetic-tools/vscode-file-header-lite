@@ -42,6 +42,7 @@ sandbox.config.json
 # Add local workspace settings (commit these)
 !.vscode/extensions.json
 !.vscode/launch.json
+!.vscode/tasks.json
 !.vscode/settings.json
 !file-header.code-workspace
 

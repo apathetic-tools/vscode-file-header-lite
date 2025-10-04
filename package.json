@@ -64,7 +64,10 @@
     "icon:png:256": "pnpm dlx @resvg/resvg-js-cli images/icon.svg images/icon@256.png 2"
   },
   "devDependencies": {
-    "@vscode/vsce": "^2.30.0"
+    "@types/node": "^24.6.2",
+    "@types/vscode": "^1.104.0",
+    "@vscode/vsce": "^2.30.0",
+    "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@10.18.0"
 }

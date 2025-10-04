@@ -1,0 +1,8 @@
+# .gitattributes
+
+# Enforce LF endings
+* text=auto eol=lf
+
+# Treat as binary
+*.png binary
+*.vsix binary
