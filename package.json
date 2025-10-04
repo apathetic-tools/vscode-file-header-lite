@@ -93,5 +93,8 @@
     "*.{json,md,mdx,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "minimatch": "^10.0.3"
   }
 }
