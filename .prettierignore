@@ -1,14 +1,12 @@
 # .prettierignore
 
-# VS Code extension packaging
-*.vsix
-
-# build output
+# Build output
 dist/
 out/
 *.tsbuildinfo
+*.vsix
 
-# dependencies
+# Dependencies
 .pnpm-store
 node_modules/
 .pnpm/
@@ -17,17 +15,15 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# logs
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
 
-# macOS-specific files
+# System files
 .DS_Store
-
-# windows specific files
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -43,6 +39,3 @@ Desktop.ini
 
 # Fonts / other generated assets
 **/_fonts/brand/
-
-# Husky hooks (commit these)
-!.husky/

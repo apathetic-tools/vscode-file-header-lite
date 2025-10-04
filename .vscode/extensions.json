@@ -5,7 +5,8 @@
     "ms-vscode-remote.remote-wsl",
     "bierner.github-markdown-preview",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens"
   ],
   "unwantedRecommendations": []
 }
