@@ -19,18 +19,7 @@ runs:
         node-version-file: .nvmrc
         cache: pnpm
 
-    # 3️⃣ Fallback: if no .nvmrc file exists, read from package.json
-    - name: Detect Node version from package.json (fallback)
-      if: ${{ !exists('.nvmrc') }}
-      run: |
-        NODE_VERSION=$(jq -r '.engines.node // empty' package.json)
-        if [ -n "$NODE_VERSION" ]; then
-          echo "Detected Node version $NODE_VERSION from package.json"
-          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
-        fi
-      shell: bash
-
-    # 4️⃣ Install dependencies
+    # 3️⃣ Install dependencies
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
       shell: bash
