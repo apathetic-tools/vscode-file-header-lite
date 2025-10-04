@@ -5,7 +5,7 @@
       "label": "tsc: build",
       "type": "shell",
       "command": "pnpm",
-      "args": ["run", "compile"],
+      "args": ["run", "build"],
       "group": {
         "kind": "build",
         "isDefault": true

@@ -68,7 +68,7 @@ vsce login apathetic-tools
 
 - `dist/` is generated and not tracked in Git.
 - `icon.png` is generated from `icon.svg`: `pnpm icon:png`
-- CI already ensures `pnpm check` and `pnpm compile` pass before merging into `main`.
+- CI already ensures `pnpm check` and `pnpm build` pass before merging into `main`.
 - Publishing is manual for now — in the future this can be automated via GitHub Actions when tagging releases.
 - Always bump version numbers before publishing, or the Marketplace will reject the upload.
 - **GitHub Releases UI is the official changelog.**
