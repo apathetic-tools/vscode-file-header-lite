@@ -53,6 +53,10 @@ pnpm vsce package
 code --install-extension vscode-file-header-lite-0.0.1.vsix
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and development instructions.
+
 ## License
 [MIT](LICENSE) © 2025 Apathetic Tools
 

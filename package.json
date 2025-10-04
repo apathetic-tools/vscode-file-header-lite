@@ -59,6 +59,7 @@
   "scripts": {
     "compile": "tsc -p .",
     "watch": "tsc -w -p .",
+    "dev": "pnpm run watch",
     "package": "pnpm run compile && vsce package",
     "publish": "pnpm run compile && vsce publish",
     "icon:png": "pnpm run icon:png:128 && pnpm run icon:png:256",
