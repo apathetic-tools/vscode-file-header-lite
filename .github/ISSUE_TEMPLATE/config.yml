@@ -1,0 +1,10 @@
+# .guthub/ISSUE_TEMPLATE/config.yml
+
+# Inspired by withastro/starlight · MIT
+# https://github.com/withastro/starlight/blob/main/.github/ISSUE_TEMPLATE/config.yml
+
+blank_issues_enabled: false
+contact_links:
+  - name: "Community 👾"
+    url: "https://discord.gg/PW6GahZ7"
+    about: "Our Discord server is active, come join us!"

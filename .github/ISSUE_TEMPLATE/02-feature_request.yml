@@ -1,0 +1,36 @@
+# .guthub/ISSUE_TEMPLATE/02-feature_request.yml
+
+name: "✨ Feature request"
+description: Suggest an improvement for vscode-file-header-lite
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the feature you’d like.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this feature important? What problem does it solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: How should the feature work? Any examples?
+
+  - type: checkboxes
+    id: lite-spirit
+    attributes:
+      label: Does this fit the "lite" spirit?
+      description: Remember, this extension is meant to stay minimal and lightweight.
+      options:
+        - label: Yes, it’s lightweight and keeps scope small
+          required: true
