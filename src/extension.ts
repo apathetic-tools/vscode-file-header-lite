@@ -2,7 +2,8 @@
 import { minimatch } from "minimatch";
 import * as path from "path";
 import * as vscode from "vscode";
-import { hasValidHeader } from "./utils";
+import { mergeConfig } from "../src/utils/configMerge";
+import { hasValidHeader } from "./utils/hasValidHeader";
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.workspace.onWillSaveTextDocument((event) => {
@@ -11,13 +12,16 @@ export function activate(context: vscode.ExtensionContext) {
 		// Skip untitled or empty docs
 		if (doc.isUntitled || doc.lineCount === 0) return;
 
-		const config = vscode.workspace.getConfiguration("filenameHeader");
-		const languages = config.get<Record<string, string>>("languages") || {};
-		const roles = config.get<Record<string, string>>("roles") || {};
-		const addLanguageLabel = config.get<boolean>("addLanguageLabel", true);
+		const vsConfig = vscode.workspace.getConfiguration("filenameHeader");
+
+		const config = mergeConfig({
+			languages: vsConfig.get("languages") || {},
+			roles: vsConfig.get("roles") || {},
+			addLanguageLabel: vsConfig.get("addLanguageLabel", true),
+		});
 
 		const langId = doc.languageId;
-		const format = languages[langId];
+		const format = config.languages[langId];
 		if (!format) return; // no format for this language
 
 		const wsFolder = vscode.workspace.getWorkspaceFolder(doc.uri);
@@ -25,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			wsFolder
 				? path.relative(wsFolder.uri.fsPath, doc.uri.fsPath)
 				: path.basename(doc.uri.fsPath)
-		).replace(/\\/g, "/");
+		).replace(/\\/g, "/"); // windows vs linux/mac
 
 		const fileName = path.basename(doc.uri.fsPath);
 
@@ -33,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// Match role via globbing
 		let role: string | undefined;
-		for (const [pattern, label] of Object.entries(roles)) {
+		for (const [pattern, label] of Object.entries(config.roles)) {
 			if (minimatch(relativeFile, pattern)) {
 				role = label;
 				break;
@@ -41,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		// Build label
-		const langLabel = addLanguageLabel
+		const langLabel = config.addLanguageLabel
 			? ` (${doc.languageId.replace(/_/g, " ")})`
 			: "";
 

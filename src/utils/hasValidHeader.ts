@@ -1,5 +1,4 @@
 // src/hasValidHeader.ts
-
 import * as vscode from "vscode";
 
 /**
