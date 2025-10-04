@@ -8,7 +8,16 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["*.json", "*.jsonc", "*.yml", "*.yaml", "*.toml", "*.md", "*.mdx", ".*"],
+      "files": [
+        "*.json",
+        "*.jsonc",
+        "*.yml",
+        "*.yaml",
+        "*.toml",
+        "*.md",
+        "*.mdx",
+        ".*"
+      ],
       "options": {
         "useTabs": false,
         "tabWidth": 2

@@ -1,4 +1,5 @@
 <!-- CONTRIBUTING.md -->
+
 # Contributing to vscode-file-header-lite
 
 Thanks for your interest in contributing!  
@@ -25,8 +26,8 @@ pnpm dev
 Then press **F5** in VS Code and select **Run Extension (watch)**.  
 This launches a new **Extension Development Host** with the extension loaded.
 
-- Edit files in `src/` → rebuilds automatically into `dist/`.  
-- Reload the Extension Host (`Ctrl+R` / `Cmd+R`) to pick up changes.  
+- Edit files in `src/` → rebuilds automatically into `dist/`.
+- Reload the Extension Host (`Ctrl+R` / `Cmd+R`) to pick up changes.
 - Breakpoints work directly in `.ts` files (source maps are enabled).
 
 ## Packaging
@@ -61,7 +62,7 @@ Version numbers are bumped automatically (use `major`, `minor`, or `patch`).
 
 ## Notes
 
-- `dist/` is generated and not tracked in Git.  
+- `dist/` is generated and not tracked in Git.
 - `icon.png` is generated from `icon.svg`:
 
 ```sh

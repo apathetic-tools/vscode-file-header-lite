@@ -1,4 +1,5 @@
 # <!-- PUBLISH.md -->
+
 # Publishing vscode-file-header-lite
 
 This guide is for maintainers who publish new versions of the extension.
@@ -14,6 +15,7 @@ This guide is for maintainers who publish new versions of the extension.
 - You must be a member of the `apathetic-tools` publisher on the VS Code Marketplace.
 
 Log in once (creates a personal access token):
+
 ```sh
 vsce login apathetic-tools
 ```
@@ -23,12 +25,13 @@ vsce login apathetic-tools
 ## Steps to Publish
 
 1. **Update version number** in `package.json`  
-   Follow [semver](https://semver.org/):  
-   - Patch → bug fixes (`0.0.1 → 0.0.2`)  
-   - Minor → new features (`0.0.1 → 0.1.0`)  
+   Follow [semver](https://semver.org/):
+   - Patch → bug fixes (`0.0.1 → 0.0.2`)
+   - Minor → new features (`0.0.1 → 0.1.0`)
    - Major → breaking changes (`0.x → 1.0.0`)
 
-2. **Commit & tag the release**  
+2. **Commit & tag the release**
+
    ```sh
    git add package.json
    git commit -m "release: v0.0.x"
@@ -36,13 +39,15 @@ vsce login apathetic-tools
    git push && git push --tags
    ```
 
-3. **Build the extension package**  
+3. **Build the extension package**
+
    ```sh
    pnpm package
    ```
+
    This creates `vscode-file-header-lite-x.y.z.vsix`.
 
-4. **Publish to Marketplace**  
+4. **Publish to Marketplace**
    ```sh
    pnpm publish
    ```
