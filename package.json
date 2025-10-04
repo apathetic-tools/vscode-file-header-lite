@@ -1,0 +1,70 @@
+{
+  "name": "vscode-file-header-lite",
+  "displayName": "File Header Lite",
+  "version": "0.0.1",
+  "description": "Adds a single-line file header comment with filepath and optional role.",
+  "keywords": [
+    "header",
+    "filename",
+    "filepath",
+    "context"
+  ],
+  "author": {
+    "name": "Apathetic Tools",
+    "url": "https://github.com/apathetic-tools"
+  },
+  "publisher": "apathetic-tools",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Filename Header",
+      "properties": {
+        "filenameHeader.languages": {
+          "type": "object",
+          "default": {
+            "javascript": "// ${relativeFile}",
+            "typescript": "// ${relativeFile}",
+            "python": "# ${relativeFile}",
+            "html": "<!-- ${relativeFile} -->"
+          },
+          "description": "Map of language id to header format. Supports ${fileName} and ${relativeFile}.",
+          "scope": "resource"
+        },
+        "filenameHeader.roles": {
+          "type": "object",
+          "default": {},
+          "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
+          "scope": "resource"
+        },
+        "filenameHeader.addLanguageLabel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to automatically append a human-readable language label (e.g. '(TypeScript React)').",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "icon:png": "pnpm run icon:png:128 && pnpm run icon:png:256",
+    "icon:png:128": "pnpm dlx @resvg/resvg-js-cli images/icon.svg images/icon.png",
+    "icon:png:256": "pnpm dlx @resvg/resvg-js-cli images/icon.svg images/icon@256.png 2"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^2.30.0"
+  },
+  "packageManager": "pnpm@10.18.0"
+}

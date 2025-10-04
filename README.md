@@ -55,3 +55,5 @@ code --install-extension vscode-file-header-lite-0.0.1.vsix
 
 ## License
 [MIT](LICENSE) © 2025 Apathetic Tools
+
+> ✨ *ChatGPT was used to help draft language, formatting, and code — plus we just love em dashes.*

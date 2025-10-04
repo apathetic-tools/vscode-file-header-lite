@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- ✨ *ChatGPT was used to help draft language, formatting, and code — plus we just love em dashes. -->
+
+  <!-- Background is transparent by design -->
+  <!-- Document shape with folded corner -->
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="1" stop-color="#F6F7F9" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <rect x="18" y="16" width="92" height="96" rx="10" ry="10" fill="#000000" opacity="0.06"/>
+  <!-- Paper -->
+  <path d="M28 16h50l24 24v60a12 12 0 0 1-12 12H40a12 12 0 0 1-12-12V16z" fill="url(#paper)"/>
+  <!-- Folded corner -->
+  <path d="M78 16v20a8 8 0 0 0 8 8h16L78 16z" fill="#E9EBF0"/>
+  <!-- Paper outline -->
+  <path d="M28 16h50l24 24v60c0 6.627-5.373 12-12 12H40c-6.627 0-12-5.373-12-12V16z
+           M78 16v20a8 8 0 0 0 8 8h16" fill="none" stroke="#8A8D93" stroke-width="2"/>
+
+  <!-- Single bold header line (the feature!) -->
+  <rect x="38" y="44" width="72" height="8" rx="4" fill="#4C8BF5"/>
+
+  <!-- A couple of faint body lines for context (kept subtle) -->
+  <rect x="38" y="62" width="60" height="6" rx="3" fill="#C8CBD1"/>
+  <rect x="38" y="76" width="48" height="6" rx="3" fill="#E0E2E7"/>
+</svg>
