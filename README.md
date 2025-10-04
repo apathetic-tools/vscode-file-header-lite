@@ -9,7 +9,7 @@
 
 Lightweight VS Code extension that adds a **single-line file header comment** with _filepath and optional role_ at the top of files.
 
-Useful when often copy and pasting files in chat.
+Useful when often copy and pasting files in chat to humans or AI.
 
 ## Features
 
