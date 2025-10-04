@@ -2,6 +2,7 @@
 import { minimatch } from "minimatch";
 import * as path from "path";
 import * as vscode from "vscode";
+import { hasValidHeader } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.workspace.onWillSaveTextDocument((event) => {
@@ -20,11 +21,15 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!format) return; // no format for this language
 
 		const wsFolder = vscode.workspace.getWorkspaceFolder(doc.uri);
-		const relativeFile = wsFolder
-			? path.relative(wsFolder.uri.fsPath, doc.uri.fsPath)
-			: path.basename(doc.uri.fsPath);
+		const relativeFile = (
+			wsFolder
+				? path.relative(wsFolder.uri.fsPath, doc.uri.fsPath)
+				: path.basename(doc.uri.fsPath)
+		).replace(/\\/g, "/");
 
 		const fileName = path.basename(doc.uri.fsPath);
+
+		if (hasValidHeader(doc, relativeFile, fileName)) return; // already present
 
 		// Match role via globbing
 		let role: string | undefined;
@@ -47,10 +52,6 @@ export function activate(context: vscode.ExtensionContext) {
 			.replace("${relativeFile}", relativeFile);
 
 		const finalHeader = `${headerLine}${langLabel}${roleLabel}`;
-
-		const firstLine = doc.lineAt(0).text;
-
-		if (firstLine.trim() === finalHeader.trim()) return; // already present
 
 		event.waitUntil(
 			Promise.resolve([
