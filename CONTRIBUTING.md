@@ -1,3 +1,4 @@
+<!-- CONTRIBUTING.md -->
 # Contributing to vscode-file-header-lite
 
 Thanks for your interest in contributing!  
