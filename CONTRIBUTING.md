@@ -27,6 +27,28 @@ pnpm format
 pnpm check
 ```
 
+## Note about VSCode and Node.js versions
+
+While you should keep the target ECMAScript version in mind when developing, you should run the latest **Node.js LTS** listed in our [.nvmrc](.nvmrc) so that all modern tooling works locally.  
+The **VS Code runtime** itself bundles its own Node version; the ECMAScript and Node targets for the built extension are defined in [`tsconfig.json`](tsconfig.json) for the compiled `dist/` output.
+
+### VS Code → Node.js → ECMAScript Compatibility
+
+| VS Code Version | VS Code Release Date | ECMAScript Target | Minimum Node.js Version | Notes                                                        |
+| --------------- | -------------------- | ----------------- | ----------------------- | ------------------------------------------------------------ |
+| 1.90+           | 2025 Q1 – Present    | ES2024            | Node 22+                | Current Insider / Stable builds; supports newest JS features |
+| 1.85 – 1.89     | 2024 Q3 – Q4         | ES2022            | Node 20+                | Most modern extensions target this range                     |
+| 1.75 – 1.84     | 2023 Q2 – 2024 Q2    | ES2022            | Node 18+                | Safe default for compatibility with older VS Code installs   |
+| 1.65 – 1.74     | 2022 Q2 – 2023 Q1    | ES2021            | Node 16+                | Introduced `Promise.any`, logical assignment ops             |
+| 1.55 – 1.64     | 2021 Q2 – 2022 Q1    | ES2020            | Node 14+                | Good baseline for broad compatibility                        |
+| 1.45 – 1.54     | 2020 Q2 – 2021 Q1    | ES2019            | Node 12+                | Legacy builds; Marketplace no longer targets these           |
+| < 1.45          | pre-2020             | ES2018            | Node 10 or earlier      | Deprecated and unsupported for Marketplace publishing        |
+
+We currently target **VS Code ^1.80.0** (see `"engines.vscode"` in [`package.json`](package.json)),  
+so aim for **ES2020** in [`tsconfig.json`](tsconfig.json).
+
+> The Marketplace enforces `"engines.vscode"` in your `package.json`, so declare the minimum VS Code version you test against.
+
 ## Development workflow
 
 Start TypeScript in watch mode:

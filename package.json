@@ -74,6 +74,9 @@
     "lint:prettier:fix": "prettier --write .",
     "lint:fix:eslint": "eslint . --ext .ts --fix"
   },
+  "dependencies": {
+    "minimatch": "^10.0.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
     "@types/node": "^24.6.2",
@@ -99,8 +102,5 @@
     "*.{json,.jsonc,md,mdx,yml,yaml}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "minimatch": "^10.0.3"
   }
 }

@@ -1,18 +1,36 @@
+# .github/actions/install/action.yml
+
 name: Install Tools & Dependencies
 description: Installs pnpm, Node.js & package dependencies
 
 runs:
   using: composite
   steps:
+    # 1️⃣ Set up PNPM (automatically reads packageManager from package.json)
     - name: Setup PNPM
       uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      with:
+        run_install: false # disable auto-install so we control install below
 
+    # 2️⃣ Set up Node (auto-detects version from .nvmrc or package.json "engines.node")
     - name: Setup Node
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
       with:
-        node-version: 22.19.0
+        node-version-file: .nvmrc
         cache: pnpm
 
+    # 3️⃣ Fallback: if no .nvmrc file exists, read from package.json
+    - name: Detect Node version from package.json (fallback)
+      if: ${{ !exists('.nvmrc') }}
+      run: |
+        NODE_VERSION=$(jq -r '.engines.node // empty' package.json)
+        if [ -n "$NODE_VERSION" ]; then
+          echo "Detected Node version $NODE_VERSION from package.json"
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
+        fi
+      shell: bash
+
+    # 4️⃣ Install dependencies
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
       shell: bash
