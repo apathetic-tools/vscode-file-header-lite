@@ -57,8 +57,10 @@
     }
   },
   "scripts": {
-    "package": "vsce package",
-    "publish": "vsce publish",
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "package": "pnpm run compile && vsce package",
+    "publish": "pnpm run compile && vsce publish",
     "icon:png": "pnpm run icon:png:128 && pnpm run icon:png:256",
     "icon:png:128": "pnpm dlx @resvg/resvg-js-cli images/icon.svg images/icon.png",
     "icon:png:256": "pnpm dlx @resvg/resvg-js-cli images/icon.svg images/icon@256.png 2"
