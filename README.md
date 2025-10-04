@@ -1,21 +1,22 @@
 <!-- README.md -->
+
 # vscode-file-header-lite
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic-tools.vscode-file-header-lite?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic-tools.vscode-file-header-lite?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite)
+[![CI](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-
-Lightweight VS Code extension that adds a **single-line file header comment** with *filepath and optional role* at the top of files.  
+Lightweight VS Code extension that adds a **single-line file header comment** with _filepath and optional role_ at the top of files.
 
 Useful when often copy and pasting files in chat.
 
 ## Features
 
-- Inserts **relative filepath + filename** as a comment at the top of the file.  
-- Supports per-language comment styles (`//`, `#`, `<!-- -->`, etc.).  
-- Optional **role/type hints** via glob patterns in settings.  
-- Optional **language labels** (e.g. `(TypeScript React)`).  
+- Inserts **relative filepath + filename** as a comment at the top of the file.
+- Supports per-language comment styles (`//`, `#`, `<!-- -->`, etc.).
+- Optional **role/type hints** via glob patterns in settings.
+- Optional **language labels** (e.g. `(TypeScript React)`).
 - Minimal, fast, and MIT licensed.
 - Supports checked in `.vscode/settings.json` even with `.code-workspace`.
 
@@ -26,7 +27,9 @@ Useful when often copy and pasting files in chat.
 ```
 
 ## Configuration
+
 In `.vscode/settings.json` or `.code-workspace`:
+
 ```json
 {
   "filenameHeader.languages": {
@@ -41,10 +44,11 @@ In `.vscode/settings.json` or `.code-workspace`:
 }
 ```
 
-* ${fileName} → just the basename
-* ${relativeFile} → project-relative path
+- ${fileName} → just the basename
+- ${relativeFile} → project-relative path
 
 ## Installation
+
 Once published, install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/)
 Or, for local builds:
 
@@ -58,6 +62,7 @@ code --install-extension vscode-file-header-lite-0.0.1.vsix
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and development instructions.
 
 ## License
+
 [MIT](LICENSE) © 2025 Apathetic Tools
 
-> ✨ *ChatGPT was used to help draft language, formatting, and code — plus we just love em dashes.*
+> ✨ _ChatGPT was used to help draft language, formatting, and code — plus we just love em dashes._

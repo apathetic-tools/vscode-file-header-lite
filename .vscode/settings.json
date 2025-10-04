@@ -1,0 +1,30 @@
+{
+  // Default formatter is Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Enable ESLint integration
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "json",
+    "jsonc",
+    "yaml",
+    "markdown"
+  ],
+
+  // Run ESLint fixes on save along with Prettier
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // Keep line endings consistent with .editorconfig
+  "files.eol": "\n",
+
+  // Show whitespace issues clearly
+  "editor.renderWhitespace": "trailing",
+  "files.trimTrailingWhitespace": false,
+  "files.insertFinalNewline": true
+}
