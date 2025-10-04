@@ -66,6 +66,31 @@ vsce login apathetic-tools
 
 ## Notes
 
+- `dist/` is generated and not tracked in Git.
+- `icon.png` is generated from `icon.svg`: `pnpm icon:png`
 - CI already ensures `pnpm check` and `pnpm compile` pass before merging into `main`.
 - Publishing is manual for now — in the future this can be automated via GitHub Actions when tagging releases.
 - Always bump version numbers before publishing, or the Marketplace will reject the upload.
+- **GitHub Releases UI is the official changelog.**
+
+## GitHub Release Template
+
+```markdown
+## [x.y.z] - YYYY-MM-DD
+
+### Added
+
+- (new features here)
+
+### Changed
+
+- (improvements, refactors, or behavior changes here)
+
+### Fixed
+
+- (bug fixes here)
+
+---
+
+📦 Published to the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite).
+```

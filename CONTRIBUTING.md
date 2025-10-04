@@ -15,6 +15,18 @@ Clone the repo and install dependencies:
 pnpm install
 ```
 
+We use [Husky](https://typicode.github.io/husky/) and [lint-staged](https://github.com/lint-staged/lint-staged) to run checks automatically when you commit.
+
+- Changed files are automatically formatted with Prettier.
+- TypeScript/ESLint checks run to prevent broken code from being committed.
+
+👉 If your commit is blocked, fix the errors shown or run:
+
+```sh
+pnpm format
+pnpm check
+```
+
 ## Development workflow
 
 Start TypeScript in watch mode:
@@ -30,6 +42,12 @@ This launches a new **Extension Development Host** with the extension loaded.
 - Reload the Extension Host (`Ctrl+R` / `Cmd+R`) to pick up changes.
 - Breakpoints work directly in `.ts` files (source maps are enabled).
 
+## Committing
+
+- All staged files will be auto-formatted and linted before the commit is created.
+- If Prettier or ESLint make fixes, just re-add the files and commit again.
+- This ensures a consistent code style across the project.
+
 ## Packaging
 
 Build a `.vsix` package for local testing or publishing:
@@ -41,30 +59,38 @@ pnpm package
 Install locally:
 
 ```sh
-code --install-extension vscode-file-header-lite-0.0.1.vsix
+code --install-extension vscode-file-header-lite-x.y.z.vsix
 ```
 
 ## Publishing
 
-1. Log in with your publisher ID (first time only):
+Maintainers only — see [PUBLISH.md](PUBLISH.md) for release instructions.
 
-```sh
-vsce login apathetic-tools
-```
+## Maintainers Guide (for reviewers only)
 
-2. Publish a new version:
+When reviewing pull requests:
 
-```sh
-pnpm publish
-```
+- ✅ Lite scope
+  - Ensure changes fit the minimal “file header only” purpose of the extension.
+  - Reject or redirect feature creep (complex templates, metadata beyond filename/role/language, etc.).
+- ✅ Checks must pass
+  - PR should pass CI (pnpm check → Prettier, ESLint, TSC).
+  - Confirm contributor followed PR checklist.
+- ✅ Test in Extension Host
+  - Pull branch locally, run pnpm dev, press F5, and test that header insertion works.
+  - Verify headers insert once, with no duplication.
+- ✅ Docs stay accurate
+  - If config changed, README/CONTRIBUTING must be updated in same PR.
+- ✅ Versioning
+  - Contributors don’t bump version numbers — maintainers handle version bumps before publishing.
 
-Version numbers are bumped automatically (use `major`, `minor`, or `patch`).
+> [!NOTE]
+> This section is only for maintainers, so contributors know the “rules of the road” are consistent, but it doesn’t burden them.
 
-## Notes
+### Maintainer Review Checklist ✅
 
-- `dist/` is generated and not tracked in Git.
-- `icon.png` is generated from `icon.svg`:
-
-```sh
-pnpm icon:png
-```
+- [ ] Fits the **lite spirit** (no unnecessary complexity).
+- [ ] CI checks passed (`pnpm check`).
+- [ ] Tested in Extension Development Host (F5) → header inserts correctly, no duplicates.
+- [ ] Documentation (README/CONTRIBUTING) updated if behavior or config changed.
+- [ ] No version bump (maintainers handle this before publishing).

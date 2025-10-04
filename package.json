@@ -25,7 +25,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
       "title": "Filename Header",

@@ -26,3 +26,10 @@ Please use this template to make sure your PR is easy to review.
 ## Related Issues
 
 <!-- Link any related issues (e.g. Closes #123) -->
+
+<!--
+
+💡 **Note**: Commits are auto-formatted and linted via Husky + lint-staged.
+So you may see cleaner diffs than your original edits.
+
+-->
