@@ -57,8 +57,9 @@
     }
   },
   "scripts": {
-    "build": "tsc -p .",
+    "compile": "tsc -p .",
     "watch": "tsc -w -p .",
+    "build": "pnpm run compile",
     "dev": "pnpm run watch",
     "package": "pnpm run build && vsce package",
     "publish": "pnpm run build && vsce publish",

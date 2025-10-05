@@ -13,10 +13,10 @@
       "problemMatcher": "$tsc"
     },
     {
-      "label": "tsc: watch",
+      "label": "tsc: dev",
       "type": "shell",
       "command": "pnpm",
-      "args": ["run", "watch"],
+      "args": ["run", "dev"],
       "isBackground": true,
       "problemMatcher": "$tsc-watch"
     }
