@@ -1,5 +1,4 @@
-import type { FilenameHeaderConfig } from "../config/configTypes";
-import { defaultConfig } from "../config/defaultConfig";
+import { defaultConfig, type FilenameHeaderConfig } from "../config/";
 
 export function mergeConfig(
 	userConfig: Partial<FilenameHeaderConfig>,

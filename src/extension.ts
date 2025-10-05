@@ -2,8 +2,7 @@
 import { minimatch } from "minimatch";
 import * as path from "path";
 import * as vscode from "vscode";
-import { mergeConfig } from "../src/utils/configMerge";
-import { hasValidHeader } from "./utils/hasValidHeader";
+import { hasValidHeader, mergeConfig } from "./utils/";
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.workspace.onWillSaveTextDocument((event) => {
