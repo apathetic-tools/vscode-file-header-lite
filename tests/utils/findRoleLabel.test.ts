@@ -10,24 +10,24 @@
 import { defaultConfig } from "../../src/config";
 import { findRoleLabel } from "../../src/utils/findRoleLabel";
 import { PathList } from "../../src/utils/types";
+import { defaultPathPreset, makePaths } from "../helpers";
 
 describe("findRoleLabel()", () => {
-	const basePaths: PathList = {
-		absolutePath: "/abs/src/components/Button.tsx",
-		relativePath: "src/components/Button.tsx",
-		filename: "Button.tsx",
-	};
+	const basePaths: PathList = makePaths();
 
 	test("returns matching role label when glob matches", () => {
 		const config = {
 			...defaultConfig,
 			roles: {
-				component: { glob: "src/components/*", role: "React component" },
+				component: {
+					glob: `${defaultPathPreset.relative}/*`,
+					role: defaultPathPreset.role,
+				},
 			},
 		};
 
 		const result = findRoleLabel(config, basePaths);
-		expect(result).toBe("React component");
+		expect(result).toBe(defaultPathPreset.role);
 	});
 
 	test("returns undefined when no roles defined", () => {
@@ -53,8 +53,8 @@ describe("findRoleLabel()", () => {
 			...defaultConfig,
 			roles: {
 				component: {
-					glob: "src/components/*",
-					role: "React component",
+					glob: `${defaultPathPreset.relative}/*`,
+					role: defaultPathPreset.role,
 					state: "disabled",
 				} as const,
 			},

@@ -9,13 +9,10 @@
 import { defaultConfig } from "../../src/config";
 import { buildHeaderString } from "../../src/utils/buildHeaderString";
 import { PathList } from "../../src/utils/types";
+import { makePaths } from "../helpers";
 
 describe("buildHeaderString()", () => {
-	const basePaths: PathList = {
-		absolutePath: "/abs/file.ts",
-		relativePath: "src/file.ts",
-		filename: "file.ts",
-	};
+	const basePaths: PathList = makePaths("file.ts", "Src");
 
 	test("returns correct header", () => {
 		const config = defaultConfig;
