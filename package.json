@@ -73,7 +73,11 @@
     "lint:tsc": "tsc --noEmit",
     "fix": "pnpm run lint:fix:prettier && pnpm run lint:fix:eslint && pnpm run lint:tsc",
     "lint:prettier:fix": "prettier --write .",
-    "lint:fix:eslint": "eslint . --ext .ts --fix"
+    "lint:fix:eslint": "eslint . --ext .ts --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "minimatch": "^10.0.3"
@@ -84,6 +88,7 @@
     "@types/vscode": "^1.104.0",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vscode/vsce": "^2.30.0",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
@@ -92,7 +97,9 @@
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.45.0"
+    "typescript-eslint": "^8.45.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   },
   "packageManager": "pnpm@10.18.0",
   "lint-staged": {

@@ -1,16 +1,12 @@
-import * as vscode from "vscode";
+// src/utils/buildHeaderString.ts
+
 import type { FileHeaderLiteConfig } from "../config";
-import type { PathList } from "./pathHelpers";
+import type { PathList } from "./types";
 
-export function buildHeaderString(
+function formatfileLabel(
 	config: FileHeaderLiteConfig,
-	doc: vscode.TextDocument,
 	paths: PathList,
-	roleLabel?: string,
-): string | undefined {
-	const langEntry = config.languagesById[doc.languageId];
-	if (!langEntry || !langEntry.header || langEntry.state === "disabled") return;
-
+): string {
 	let fileLabel = "";
 	switch (config.filePathStyle) {
 		case "filename":
@@ -24,12 +20,44 @@ export function buildHeaderString(
 			fileLabel = paths.relativePath;
 			break;
 	}
+	return fileLabel;
+}
+
+function formatLanguageLabel(
+	config: FileHeaderLiteConfig,
+	languageId: string,
+): string {
+	const langEntry = config.languagesById[languageId];
+	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
+		return "";
 
 	const langLabel = config.showLanguage
-		? ` (${langEntry.language ?? doc.languageId.replace(/_/g, " ")})`
+		? ` (${langEntry.language ?? languageId.replace(/_/g, " ")})`
 		: "";
-	const roleText = roleLabel ? ` ${roleLabel}` : "";
+	return langLabel;
+}
 
-	const headerLine = `${fileLabel}${langLabel}${roleText}`;
-	return langEntry.header.replace("${headerLine}", headerLine);
+function formatRoleLabel(roleLabel?: string): string {
+	const roleText = roleLabel ? ` ${roleLabel}` : "";
+	return roleText;
+}
+
+export function buildHeaderString(
+	config: FileHeaderLiteConfig,
+	languageId: string,
+	paths: PathList,
+	roleLabel?: string,
+): string | undefined {
+	const langEntry = config.languagesById[languageId];
+	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
+		return "";
+
+	return langEntry.header.replace(
+		"${headerLine}",
+		[
+			formatfileLabel(config, paths),
+			formatLanguageLabel(config, languageId),
+			formatRoleLabel(roleLabel),
+		].join(""),
+	);
 }

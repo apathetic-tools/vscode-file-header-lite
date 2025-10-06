@@ -1,3 +1,4 @@
+// .vscode/settings.json
 {
   // Default formatter is Prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -26,5 +27,10 @@
   // Show whitespace issues clearly
   "editor.renderWhitespace": "trailing",
   "files.trimTrailingWhitespace": false,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+
+  // experimental typescript settings to ensure workspace tsconfig
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

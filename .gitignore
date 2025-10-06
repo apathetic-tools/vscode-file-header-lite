@@ -6,6 +6,7 @@
 # Build output
 dist/
 out/
+coverage/
 *.tsbuildinfo
 *.vsix
 

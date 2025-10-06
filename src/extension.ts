@@ -32,7 +32,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const roleLabel = findRoleLabel(config, paths);
 
-		const finalHeader = buildHeaderString(config, doc, paths, roleLabel);
+		const finalHeader = buildHeaderString(
+			config,
+			doc.languageId,
+			paths,
+			roleLabel,
+		);
 		if (!finalHeader) return;
 
 		event.waitUntil(

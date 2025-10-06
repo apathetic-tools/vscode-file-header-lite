@@ -1,10 +1,5 @@
 // src/utils/pathHelpers.ts
-
-export type PathList = {
-	absolutePath: string;
-	relativePath: string;
-	filename: string;
-};
+import type { PathList } from "./types";
 
 import * as path from "path";
 import * as vscode from "vscode";

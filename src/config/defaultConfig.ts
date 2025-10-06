@@ -1,5 +1,5 @@
 // src/defaultConfig.ts
-import type { FileHeaderLiteConfig } from "./configTypes";
+import type { FileHeaderLiteConfig } from "./types";
 
 export const defaultConfig: FileHeaderLiteConfig = {
 	/** Replace an outdated header path when file moves */

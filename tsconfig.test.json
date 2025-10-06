@@ -1,0 +1,25 @@
+// tsconfig.test.json
+
+// ⚠️ TypeScript shows a false-positive here:
+// "Referenced project must have 'composite': true"
+// This is intentional — we use mutual references only
+// to make VS Code discover both tsconfigs for IntelliSense,
+// not for tsc --build. Safe to ignore.
+// See notes in config below.
+
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "types": ["vitest/globals", "node"]
+  },
+  "include": ["tests"],
+  "exclude": ["node_modules"],
+  // needed to import `src/` in tests,
+  // but if we `include` instead tsconfig detection breaks.
+  "references": [{ "path": "./tsconfig.json" }]
+}

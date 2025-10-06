@@ -1,3 +1,9 @@
+// tsconfig.json
+
+// ⚠️ TypeScript shows a false-positive here:
+// "Referenced project must have 'composite': true"
+// See explanation of mutual references in tsconfig.test.json
+
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -15,5 +21,7 @@
     "moduleResolution": "node"
   },
   "include": ["src"],
-  "exclude": ["node_modules", ".vscode-test"]
+  "exclude": ["node_modules", ".vscode-test", "tests"],
+  // required so TS sees our tsconfig.test.json file
+  "references": [{ "path": "./tsconfig.test.json" }]
 }
