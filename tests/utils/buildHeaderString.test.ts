@@ -1,6 +1,6 @@
-import { defaultConfig } from "../src/config";
-import { buildHeaderString } from "../src/utils/buildHeaderString";
-import { PathList } from "../src/utils/types";
+import { defaultConfig } from "../../src/config";
+import { buildHeaderString } from "../../src/utils/buildHeaderString";
+import { PathList } from "../../src/utils/types";
 
 test("buildHeaderString returns correct header", () => {
 	const config = defaultConfig;

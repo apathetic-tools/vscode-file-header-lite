@@ -34,7 +34,6 @@
 
 ## ⚙️ Configuration UX
 
-- [ ] Better location for `src/config/defaultConfig.ts`
 - [ ] Expose `filenameHeader.languages` in VS Code settings (`contributes.configuration`)
 - [ ] Add **auto-migration** for legacy config
   - [ ] Detect `.fileheader.json` or old `filenameHeader` keys
