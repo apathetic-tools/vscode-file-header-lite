@@ -9,11 +9,7 @@ test("buildHeaderString returns correct header", () => {
 		relativePath: "src/file.ts",
 		filename: "file.ts",
 	};
-	const header = buildHeaderString(
-		config,
-		{ languageId: "typescript" } as any,
-		paths,
-	);
+	const header = buildHeaderString(config, "typescript", paths);
 	expect(header?.startsWith("//")).toBe(true);
 	expect(header?.includes("file.ts")).toBe(true);
 });

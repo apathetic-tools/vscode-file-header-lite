@@ -28,5 +28,8 @@ jobs:
       - name: Type check & format check
         run: pnpm check
 
+      - name: Run unit tests
+        run: pnpm test
+
       - name: Build extension
         run: pnpm build

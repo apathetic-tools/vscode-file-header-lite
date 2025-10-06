@@ -1,0 +1,11 @@
+#!/bin/sh
+# .husky/pre-push
+. "$(dirname -- "$0")/_/husky.sh"
+
+set -e  # stop on first failure
+
+echo "🔍 Type checking..."
+pnpm lint:tsc
+
+echo "🧪 Running tests..."
+pnpm test

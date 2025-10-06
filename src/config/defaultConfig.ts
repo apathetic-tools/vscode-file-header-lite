@@ -147,6 +147,7 @@ export const defaultConfig: FileHeaderLiteConfig = {
 			},
 		},
 		shellscript: {
+			state: "disabled", // ⚠️ shebang (#!) must stay on line 1; we don't yet support second-line header insertion
 			header: "# ${headerLine}",
 			docs: {
 				note: "defacto bash",
