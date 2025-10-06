@@ -16,6 +16,7 @@
   "publisher": "apathetic-tools",
   "license": "MIT",
   "icon": "images/icon.png",
+  "type": "commonjs",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -70,7 +71,7 @@
     "check": "pnpm run lint:prettier && pnpm run lint:eslint && pnpm run lint:tsc",
     "lint:prettier": "prettier --check .",
     "lint:eslint": "eslint . --ext .ts",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc --noEmit -p tsconfig.build.json",
     "fix": "pnpm run lint:fix:prettier && pnpm run lint:fix:eslint && pnpm run lint:tsc",
     "lint:prettier:fix": "prettier --write .",
     "lint:fix:eslint": "eslint . --ext .ts --fix",
@@ -92,6 +93,7 @@
     "@vscode/vsce": "^2.30.0",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "lint-staged": "^16.2.3",

@@ -4,6 +4,7 @@
 # https://github.com/apathetic-tools/snippets/blob/main/docs/windows/development-setup
 
 # Build output
+.tsbuild/
 dist/
 out/
 coverage/

@@ -10,6 +10,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "outDir": ".tsbuild/tests",
     "rootDir": ".",
     "composite": true,
     "declaration": true,

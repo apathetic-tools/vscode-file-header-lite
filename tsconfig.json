@@ -4,6 +4,8 @@
 // "Referenced project must have 'composite': true"
 // See explanation of mutual references in tsconfig.test.json
 
+// ⚙️ VSCode extensions still use "module": "CommonJS", for backwards compatability.
+
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -22,6 +24,6 @@
   },
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test", "tests"],
-  // required so TS sees our tsconfig.test.json file
-  "references": [{ "path": "./tsconfig.test.json" }]
+  // required so intellisense sees our tsconfig.test.json file
+  "references": [{ "path": "./tsconfig.tests.json" }]
 }

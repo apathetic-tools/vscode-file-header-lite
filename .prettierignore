@@ -1,8 +1,10 @@
 # .prettierignore
 
 # Build output
+.tsbuild/
 dist/
 out/
+coverage/
 *.tsbuildinfo
 *.vsix
 
