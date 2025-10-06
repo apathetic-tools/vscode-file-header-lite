@@ -1,5 +1,6 @@
 // src/hasValidHeader.ts
 import * as vscode from "vscode";
+import type { PathList } from "./pathHelpers";
 
 /**
  * Checks whether the document already has a valid header comment.
@@ -9,8 +10,7 @@ import * as vscode from "vscode";
  */
 export function hasValidHeader(
 	document: vscode.TextDocument,
-	relativeFile: string,
-	fileName: string,
+	paths: PathList,
 ): boolean {
 	if (document.lineCount === 0) return false;
 
@@ -38,12 +38,13 @@ export function hasValidHeader(
 	// Escape regex meta chars
 	const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-	const escapedRelative = escape(relativeFile);
-	const escapedFileName = escape(fileName);
+	const escapedAbsolute = escape(paths.absolutePath);
+	const escapedRelative = escape(paths.relativePath);
+	const escapedFileName = escape(paths.filename);
 
 	// Match either relative path or filename at a word boundary
 	const pattern = new RegExp(
-		`(?:^|\\s)(${escapedRelative}|${escapedFileName})(?:\\s|$)`,
+		`(?:^|\\s)(${escapedAbsolute}|${escapedRelative}|${escapedFileName})(?:\\s|$)`,
 	);
 
 	return pattern.test(firstNonBlank);
