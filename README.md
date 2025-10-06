@@ -7,6 +7,8 @@
 [![CI](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
+📘 **[Roadmap](./Roadmap.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header-lite/releases)**
+
 Lightweight VS Code extension that adds a **single-line file header comment** with _filepath and optional role_ at the top of files.
 
 Useful when often copy and pasting files in chat to humans or AI.
