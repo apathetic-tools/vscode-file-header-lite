@@ -1,0 +1,21 @@
+// tsconfig.build.json
+
+// ⚙️ Used only for build — inherits settings from tsconfig.json
+// Avoids circular references used for IDE IntelliSense.
+
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmit": false,
+    "declaration": false,
+    // Optional build tweaks:
+    "sourceMap": true,
+    "inlineSources": true
+  },
+  // Remove any references from the parent to prevent circular builds
+  "references": [],
+  // We only want to compile real source files
+  "include": ["src"],
+  "exclude": ["tests", "node_modules", ".vscode-test"]
+}

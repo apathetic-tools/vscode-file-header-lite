@@ -57,8 +57,8 @@
     }
   },
   "scripts": {
-    "compile": "tsc -p .",
-    "watch": "tsc -w -p .",
+    "compile": "tsc -p tsconfig.build.json",
+    "watch": "tsc -w -p tsconfig.build.json",
     "build": "pnpm run compile",
     "dev": "pnpm run watch",
     "package": "pnpm run build && vsce package",

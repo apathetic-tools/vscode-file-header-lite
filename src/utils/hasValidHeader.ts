@@ -1,6 +1,6 @@
 // src/hasValidHeader.ts
 import * as vscode from "vscode";
-import type { PathList } from "./pathHelpers";
+import type { PathList } from "./types";
 
 /**
  * Checks whether the document already has a valid header comment.
