@@ -5,11 +5,11 @@
 	✓ handles missing workspace settings gracefully
 */
 
-import * as vscode from "vscode";
 import type { FileHeaderLiteConfig } from "../../src/config";
 import { defaultConfig } from "../../src/config";
 import { getEffectiveConfig } from "../../src/utils/getEffectiveConfig";
 import * as mergeConfigModule from "../../src/utils/mergeConfig";
+import { mockVsConfig } from "../helpers";
 
 describe("getEffectiveConfig()", () => {
 	test("calls mergeConfig with default and user config", () => {
@@ -21,21 +21,13 @@ describe("getEffectiveConfig()", () => {
 				filePathStyle: "filename",
 			} as FileHeaderLiteConfig);
 
-		const mockVsConfig = {
-			get: (key: string) => {
-				const mockSettings: Record<string, unknown> = {
-					autoUpdate: false,
-					filePathStyle: "filename",
-					showLanguage: true,
-				};
-				return mockSettings[key];
-			},
-			has: () => false,
-			inspect: () => undefined,
-			update: async () => {},
-		} satisfies vscode.WorkspaceConfiguration;
+		const vsConfig = mockVsConfig({
+			autoUpdate: false,
+			filePathStyle: "filename",
+			showLanguage: true,
+		});
 
-		const result = getEffectiveConfig(defaultConfig, mockVsConfig);
+		const result = getEffectiveConfig(defaultConfig, vsConfig);
 
 		expect(mergeSpy).toHaveBeenCalledWith(
 			defaultConfig,
@@ -55,14 +47,9 @@ describe("getEffectiveConfig()", () => {
 			.spyOn(mergeConfigModule, "mergeConfig")
 			.mockReturnValue(defaultConfig);
 
-		const mockVsConfig = {
-			get: () => undefined,
-			has: () => false,
-			inspect: () => undefined,
-			update: async () => {},
-		} satisfies vscode.WorkspaceConfiguration;
+		const vsConfig = mockVsConfig();
 
-		const result = getEffectiveConfig(defaultConfig, mockVsConfig);
+		const result = getEffectiveConfig(defaultConfig, vsConfig);
 
 		expect(mergeSpy).toHaveBeenCalledWith(
 			defaultConfig,

@@ -9,17 +9,9 @@
   ✓ skips leading blank lines
 */
 
-import * as vscode from "vscode";
 import { hasValidHeader } from "../../src/utils/hasValidHeader";
 import type { PathList } from "../../src/utils/types";
-
-// helper to create a mock TextDocument
-function mockDocument(lines: string[]): vscode.TextDocument {
-	return {
-		lineCount: lines.length,
-		lineAt: (i: number) => ({ text: lines[i] }),
-	} as unknown as vscode.TextDocument;
-}
+import { makeMockDocument } from "../helpers";
 
 describe("hasValidHeader()", () => {
 	const paths: PathList = {
@@ -29,34 +21,34 @@ describe("hasValidHeader()", () => {
 	};
 
 	test("returns true when header contains relative path", () => {
-		const doc = mockDocument([
+		const doc = makeMockDocument([
 			"// src/components/Button.tsx (React component)",
 		]);
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 
 	test("returns true when header contains filename only", () => {
-		const doc = mockDocument(["// Button.tsx"]);
+		const doc = makeMockDocument(["// Button.tsx"]);
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 
 	test("returns false when comment does not contain file info", () => {
-		const doc = mockDocument(["// This is just a comment"]);
+		const doc = makeMockDocument(["// This is just a comment"]);
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("returns false when first line is not a comment", () => {
-		const doc = mockDocument(["import React from 'react';"]);
+		const doc = makeMockDocument(["import React from 'react';"]);
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("returns false for empty document", () => {
-		const doc = mockDocument([]);
+		const doc = makeMockDocument([]);
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("skips leading blank lines", () => {
-		const doc = mockDocument(["", "   ", "// src/components/Button.tsx"]);
+		const doc = makeMockDocument(["", "   ", "// src/components/Button.tsx"]);
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 });
