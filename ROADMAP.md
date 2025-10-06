@@ -34,7 +34,7 @@
 
 ## ⚙️ Configuration UX
 
-- [ ] better location for `src/config/defaultConfig.ts`
+- [ ] Better location for `src/config/defaultConfig.ts`
 - [ ] Expose `filenameHeader.languages` in VS Code settings (`contributes.configuration`)
 - [ ] Add **auto-migration** for legacy config
   - [ ] Detect `.fileheader.json` or old `filenameHeader` keys
@@ -47,14 +47,14 @@
 - [ ] **Unit Tests**
   - [ ] `/src/utils` (e.g., `getFileInfo`, `getCommentStyle`)
   - [ ] `/src/config` (schema defaults, overrides)
-- [ ] **Unit Tests**
-  - [ ] `/src/utils` (e.g., `getFileInfo`, `getCommentStyle`)
-  - [ ] `/src/config` (schema defaults, overrides)
+- [ ] **Integration Tests**
+  - [ ] `activate()` lifecycle (mock VS Code API)
+  - [ ] `insertHeader()` end-to-end (temporary file workspace)
 
 ## 🚀 Deployment
 
 - [ ] Tag first public release `v0.1.0`
-- [ ] publish to VSCode Marketplace 0.1.0 tagged release
+- [ ] Publish to VSCode Marketplace 0.1.0 tagged release (`vsce publish`)
 
 ## 🔮 Future Considerations
 
