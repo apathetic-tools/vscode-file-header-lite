@@ -3,6 +3,17 @@
 ### Header Insertion
 
 - [ ] Support full config schema
+  - [ ] autoUpdate: boolean;
+  - [ ] filePathStyle: FilePathStyle;
+  - [ ] showLanguage: boolean;
+  - [ ] showFormat: boolean;
+  - [ ] showRoles: boolean;
+  - [ ] useLanguagesById: boolean;
+  - [ ] useLanguagesByPath: boolean;
+  - [ ] matchStyle: FilePathStyle;
+  - [ ] languagesById: Record<VSCodeLangId, LanguagesById>;
+  - [ ] languagesByPath?: Record<CustomLangId, LanguagesByPath>;
+  - [ ] roles?: Roles;
 - [ ] Support second-line insertion after shebang (`#!`)
 - [ ] Detect and skip license headers
 
@@ -20,7 +31,7 @@
 
 ### Deployment
 
-- [ ] publish to VSCode Marketplace
+- [ ] publish to VSCode Marketplace 0.1.0 tagged release
 
 ### Future Consideration
 
