@@ -102,4 +102,64 @@ describe("buildHeaderString()", () => {
 		);
 		expect(header).not.toContain("React component");
 	});
+
+	test("includes format label when showFormat=true", () => {
+		const config = makeDefaultConfig({
+			showFormat: true,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					format: "React",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", basePaths);
+		expect(header).toContain("React");
+	});
+
+	test("omits format label when showFormat=false", () => {
+		const config = makeDefaultConfig({
+			showFormat: false,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					format: "React",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", basePaths);
+		expect(header).not.toContain("React");
+	});
+
+	test("includes both language and format joined by em dash", () => {
+		const config = makeDefaultConfig({
+			showLanguage: true,
+			showFormat: true,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+					format: "React",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", makePaths());
+		expect(header).toContain("(TypeScript — React)");
+	});
+
+	test("includes only language when no format defined", () => {
+		const config = makeDefaultConfig({
+			showLanguage: true,
+			showFormat: true,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", makePaths());
+		expect(header).toContain("(TypeScript)");
+		expect(header).not.toContain("—");
+	});
 });
