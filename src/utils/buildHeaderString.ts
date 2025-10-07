@@ -1,7 +1,7 @@
 // src/utils/buildHeaderString.ts
 
 import type { FileHeaderLiteConfig } from "../config";
-import type { PathList } from "./types";
+import type { PathList, ResolvedLanguageTemplate } from "./types";
 
 function formatfileLabel(
 	config: FileHeaderLiteConfig,
@@ -25,23 +25,20 @@ function formatfileLabel(
 
 function formatLanguageLabel(
 	config: FileHeaderLiteConfig,
-	languageId: string,
+	langEntry: ResolvedLanguageTemplate,
 ): string {
-	const langEntry = config.languagesById[languageId];
 	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
 		return "";
 
-	const langLabel = config.showLanguage
-		? (langEntry.language ?? languageId.replace(/_/g, " "))
-		: "";
-	return langLabel;
+	if (!config.showLanguage || !langEntry.language) return "";
+
+	return langEntry.language.replace(/_/g, " ");
 }
 
 function formatFormatLabel(
 	config: FileHeaderLiteConfig,
-	languageId: string,
+	langEntry: ResolvedLanguageTemplate,
 ): string {
-	const langEntry = config.languagesById[languageId];
 	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
 		return "";
 
@@ -60,10 +57,10 @@ function formatRoleLabel(
 
 function formatLanguageAndFormatLabel(
 	config: FileHeaderLiteConfig,
-	languageId: string,
+	langEntry: ResolvedLanguageTemplate,
 ) {
-	const lang = formatLanguageLabel(config, languageId);
-	const format = formatFormatLabel(config, languageId);
+	const lang = formatLanguageLabel(config, langEntry);
+	const format = formatFormatLabel(config, langEntry);
 
 	if (lang && format) {
 		return ` (${lang} — ${format})`;
@@ -78,11 +75,10 @@ function formatLanguageAndFormatLabel(
 
 export function buildHeaderString(
 	config: FileHeaderLiteConfig,
-	languageId: string,
+	langEntry: ResolvedLanguageTemplate,
 	paths: PathList,
 	roleLabel?: string,
 ): string | undefined {
-	const langEntry = config.languagesById[languageId];
 	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
 		return "";
 
@@ -90,7 +86,7 @@ export function buildHeaderString(
 		"${headerLine}",
 		[
 			formatfileLabel(config, paths),
-			formatLanguageAndFormatLabel(config, languageId),
+			formatLanguageAndFormatLabel(config, langEntry),
 			formatRoleLabel(config, roleLabel),
 		].join(""),
 	);

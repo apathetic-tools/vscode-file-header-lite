@@ -2,10 +2,13 @@
 
 import type * as vscode from "vscode";
 import type { FileHeaderLiteConfig } from "../config";
-import { buildHeaderString } from "../utils/buildHeaderString";
-import { findRoleLabel } from "../utils/findRoleLabel";
-import { hasValidHeader } from "../utils/hasValidHeader";
-import { getFilePaths } from "../utils/pathHelpers";
+import {
+	buildHeaderString,
+	findRoleLabel,
+	getFilePaths,
+	hasValidHeader,
+	type ResolvedLanguageTemplate,
+} from "../utils";
 
 /**
  * Compute the header text to insert for a given document.
@@ -15,24 +18,62 @@ export function generateHeaderForDocument(
 	config: FileHeaderLiteConfig,
 	doc: vscode.TextDocument,
 ): string | undefined {
-	// Respect global toggle
-	if (!config.useLanguagesById) return;
+	const paths = getFilePaths(doc);
 
+	// Skip if document already has a valid header
+	if (hasValidHeader(doc, paths)) return;
+
+	// Try languageId → then path
+	let template: ResolvedLanguageTemplate | undefined;
+
+	if (config.useLanguagesById) {
+		template = generateHeaderByLanguageId(config, doc);
+		if (template && template.state && template.state === "fallback") {
+			template = undefined;
+		}
+	}
+
+	if (!template && config.useLanguagesByPath) {
+		template = generateHeaderByPath(config, doc, paths);
+	}
+
+	if (!template || !template.header || template.state === "disabled") return;
+
+	const roleLabel = findRoleLabel(config, paths);
+	return buildHeaderString(config, template, paths, roleLabel);
+}
+
+/**
+ * Generate header based on VS Code language ID (languagesById).
+ */
+export function generateHeaderByLanguageId(
+	config: FileHeaderLiteConfig,
+	doc: vscode.TextDocument,
+): ResolvedLanguageTemplate | undefined {
 	const langId = doc.languageId;
 	const langEntry = config.languagesById[langId];
 
 	// Skip unknown or disabled languages
-	if (!langEntry || !langEntry.header) return;
-	if (langEntry.state && langEntry.state === "disabled") return;
-
-	// Skip languages that define no header template
+	if (!langEntry || langEntry.state === "disabled") return;
 	if (!langEntry.header) return;
 
-	const paths = getFilePaths(doc);
+	return {
+		header: langEntry.header,
+		state: langEntry.state,
+		language: langEntry.language ?? langId,
+		format: langEntry.format,
+		context: undefined,
+	};
+}
 
-	if (hasValidHeader(doc, paths)) return; // already present
-
-	const roleLabel = findRoleLabel(config, paths);
-
-	return buildHeaderString(config, langId, paths, roleLabel);
+/**
+ * Generate header based on file path (languagesByPath).
+ * (Stub for future implementation)
+ */
+export function generateHeaderByPath(
+	_config: FileHeaderLiteConfig,
+	_doc: vscode.TextDocument,
+	_paths: ReturnType<typeof getFilePaths>,
+): ResolvedLanguageTemplate | undefined {
+	return undefined; // placeholder for next step
 }

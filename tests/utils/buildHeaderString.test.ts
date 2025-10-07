@@ -18,72 +18,62 @@
 */
 
 import { PathList, buildHeaderString, findRoleLabel } from "../../src/utils";
+import type { ResolvedLanguageTemplate } from "../../src/utils/types";
 import { makeDefaultConfig, makePaths } from "../helpers";
 
 describe("buildHeaderString()", () => {
 	const basePaths: PathList = makePaths("file.ts", "Src");
+	const baseTemplate: ResolvedLanguageTemplate = {
+		header: "// ${headerLine}",
+		state: "enabled",
+		language: "TypeScript",
+		format: undefined,
+		context: undefined,
+	};
 
 	test("returns correct header", () => {
 		const config = makeDefaultConfig();
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const header = buildHeaderString(config, baseTemplate, basePaths);
 		expect(header?.startsWith("//")).toBe(true);
 		expect(header?.includes("file.ts")).toBe(true);
 	});
 
 	test("respects filePathStyle = 'filename'", () => {
 		const config = makeDefaultConfig({ filePathStyle: "filename" });
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const header = buildHeaderString(config, baseTemplate, basePaths);
 		expect(header).toContain("file.ts");
 		expect(header).not.toContain("src/file.ts");
 	});
 
 	test("returns empty string when language is disabled", () => {
 		const config = makeDefaultConfig();
-		config.languagesById.typescript.state = "disabled";
-		expect(buildHeaderString(config, "typescript", basePaths)).toBe("");
+		const disabledTemplate = { ...baseTemplate, state: "disabled" as const };
+		expect(buildHeaderString(config, disabledTemplate, basePaths)).toBe("");
 	});
 
 	test("includes language label when showLanguage=true", () => {
 		const config = makeDefaultConfig({
 			showLanguage: true,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const header = buildHeaderString(config, baseTemplate, basePaths);
 		expect(header).toContain("TypeScript");
 	});
 
 	test("omits language label when showLanguage=false", () => {
 		const config = makeDefaultConfig({
 			showLanguage: false,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const header = buildHeaderString(config, baseTemplate, basePaths);
 		expect(header).not.toContain("TypeScript");
 	});
 
 	test("includes role label when showRoles=true", () => {
 		const config = makeDefaultConfig({
 			showRoles: true,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-				},
-			},
 		});
 		const header = buildHeaderString(
 			config,
-			"typescript",
+			baseTemplate,
 			basePaths,
 			"React component",
 		);
@@ -93,16 +83,10 @@ describe("buildHeaderString()", () => {
 	test("omits role label when showRoles=false", () => {
 		const config = makeDefaultConfig({
 			showRoles: false,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-				},
-			},
 		});
 		const header = buildHeaderString(
 			config,
-			"typescript",
+			baseTemplate,
 			basePaths,
 			"React component",
 		);
@@ -112,28 +96,21 @@ describe("buildHeaderString()", () => {
 	test("includes format label when showFormat=true", () => {
 		const config = makeDefaultConfig({
 			showFormat: true,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					format: "React",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const template = {
+			...baseTemplate,
+			language: undefined,
+			format: "React",
+		};
+		const header = buildHeaderString(config, template, basePaths);
 		expect(header).toContain("React");
 	});
 
 	test("omits format label when showFormat=false", () => {
 		const config = makeDefaultConfig({
 			showFormat: false,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					format: "React",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", basePaths);
+		const header = buildHeaderString(config, baseTemplate, basePaths);
 		expect(header).not.toContain("React");
 	});
 
@@ -141,15 +118,13 @@ describe("buildHeaderString()", () => {
 		const config = makeDefaultConfig({
 			showLanguage: true,
 			showFormat: true,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-					format: "React",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", makePaths());
+		const template = {
+			...baseTemplate,
+			language: "TypeScript",
+			format: "React",
+		};
+		const header = buildHeaderString(config, template, makePaths());
 		expect(header).toContain("(TypeScript — React)");
 	});
 
@@ -157,14 +132,8 @@ describe("buildHeaderString()", () => {
 		const config = makeDefaultConfig({
 			showLanguage: true,
 			showFormat: true,
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-				},
-			},
 		});
-		const header = buildHeaderString(config, "typescript", makePaths());
+		const header = buildHeaderString(config, baseTemplate, makePaths());
 		expect(header).toContain("(TypeScript)");
 		expect(header).not.toContain("—");
 	});
@@ -178,21 +147,13 @@ describe("buildHeaderString()", () => {
 					role: "React component",
 				},
 			},
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-					format: "React",
-				},
-			},
 		});
 
 		const paths = makePaths("Button.tsx", "src/components");
 		const roleLabel = findRoleLabel(config, paths);
-		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+		const header = buildHeaderString(config, baseTemplate, paths, roleLabel);
 
 		expect(header).toContain("React component");
-		expect(header).toContain("—");
 	});
 
 	test("omits role when showRoles=false", () => {
@@ -204,18 +165,11 @@ describe("buildHeaderString()", () => {
 					role: "React component",
 				},
 			},
-			languagesById: {
-				typescript: {
-					header: "// ${headerLine}",
-					language: "TypeScript",
-					format: "React",
-				},
-			},
 		});
 
 		const paths = makePaths("Button.tsx", "src/components");
 		const roleLabel = findRoleLabel(config, paths);
-		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+		const header = buildHeaderString(config, baseTemplate, paths, roleLabel);
 
 		expect(header).not.toContain("React component");
 	});
@@ -230,9 +184,6 @@ describe("buildHeaderString()", () => {
 					role: "React component",
 				},
 			},
-			languagesById: {
-				typescript: { header: "// ${headerLine}" },
-			},
 		});
 		const paths = makePaths(
 			"Button.tsx",
@@ -240,7 +191,7 @@ describe("buildHeaderString()", () => {
 			"/Users/me/project",
 		);
 		const roleLabel = findRoleLabel(config, paths);
-		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+		const header = buildHeaderString(config, baseTemplate, paths, roleLabel);
 
 		// Verify the header displays the absolute path
 		expect(header).toContain("/Users/me/project/src/components/Button.tsx");

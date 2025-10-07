@@ -3,3 +3,12 @@ export type PathList = {
 	relativePath: string;
 	filename: string;
 };
+
+export interface ResolvedLanguageTemplate {
+	header: string;
+	state?: "enabled" | "disabled" | "fallback";
+	language?: string;
+	format?: string;
+	context?: string;
+	role?: string;
+}

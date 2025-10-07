@@ -16,7 +16,6 @@
 - [ ] **Support full config schema**
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
   - [ ] `useLanguagesByPath`: resolve by file path
-  - [ ] `languagesById`: per-language comment configuration
   - [ ] `languagesByPath`: custom language overrides
 - [ ] **Templates**
   - [ ] Implement language template
@@ -30,7 +29,7 @@
 - [ ] **Comment Style Handling**
   - [ ] Support single-line (`#`, `//`) and multi-line (`/* ... */`, `<!-- ... -->`) and doc (`/** */`) formats
 
-## ⚙️ Configuration UX
+## ⚙️ Configuration
 
 - [ ] Expose `filenameHeader.languages` in VS Code settings (`contributes.configuration`)
 - [ ] Add **auto-migration** for legacy config
@@ -38,6 +37,9 @@
   - [ ] Migrate automatically or warn user
 - [ ] Add **“Reload Header”** command to manually reinsert headers
 - [ ] Generate a JSON Schema for validation and GUI integration
+- [ ] Fill out additional languages in byPath
+- [ ] Fill out additional special files (.gitignore) in byPath
+- [ ] Decide if I should have default roles based on common project structures (.vscode? .github? tests/?)
 
 ## 🧪 Testing
 
