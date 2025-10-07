@@ -14,6 +14,7 @@
  ✓ includes only language when no format defined
  ✓ includes role when matching role glob and showRoles=true
  ✓ omits role when showRoles=false
+ ✓ respects filePathStyle for display only (not matching)
 */
 
 import { PathList, buildHeaderString, findRoleLabel } from "../../src/utils";
@@ -217,5 +218,34 @@ describe("buildHeaderString()", () => {
 		const header = buildHeaderString(config, "typescript", paths, roleLabel);
 
 		expect(header).not.toContain("React component");
+	});
+
+	test("respects filePathStyle for display only (not matching)", () => {
+		const config = makeDefaultConfig({
+			filePathStyle: "absolutePath",
+			showRoles: true,
+			roles: {
+				component: {
+					glob: "src/components/*", // still relative glob
+					role: "React component",
+				},
+			},
+			languagesById: {
+				typescript: { header: "// ${headerLine}" },
+			},
+		});
+		const paths = makePaths(
+			"Button.tsx",
+			"src/components",
+			"/Users/me/project",
+		);
+		const roleLabel = findRoleLabel(config, paths);
+		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+
+		// Verify the header displays the absolute path
+		expect(header).toContain("/Users/me/project/src/components/Button.tsx");
+
+		// But the role still matched via relative path
+		expect(header).toContain("React component");
 	});
 });
