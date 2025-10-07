@@ -2,7 +2,7 @@
   "name": "vscode-file-header",
   "displayName": "File Header for AI",
   "version": "0.0.1",
-  "description": "Lightweight, zero-config file headers for AI chats and humans",
+  "description": "Lightweight file headers for AI chats and humans.",
   "keywords": [
     "file header",
     "comment header",
@@ -18,6 +18,14 @@
   "publisher": "apathetic",
   "license": "MIT",
   "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apathetic-tools/vscode-file-header"
+  },
+  "bugs": {
+    "url": "https://github.com/apathetic-tools/vscode-file-header/issues"
+  },
+  "homepage": "https://github.com/apathetic-tools/vscode-file-header#readme",
   "type": "commonjs",
   "engines": {
     "vscode": "^1.80.0"
@@ -31,7 +39,7 @@
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Filename Header",
+      "title": "File Header for AI",
       "properties": {
         "filenameHeader.languages": {
           "type": "object",
@@ -75,7 +83,7 @@
     "lint:eslint": "eslint . --ext .ts",
     "lint:tsc": "tsc --noEmit -p tsconfig.build.json",
     "fix": "pnpm run fix:prettier & pnpm run fix:eslint & pnpm run lint:tsc",
-    "fix:prettier:": "prettier --write .",
+    "fix:prettier": "prettier --write .",
     "fix:eslint": "eslint . --ext .ts --fix",
     "test": "vitest run",
     "test:watch": "vitest",

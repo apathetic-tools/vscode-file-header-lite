@@ -9,18 +9,20 @@
 
 📘 **[Roadmap](./Roadmap.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
 
-Lightweight VS Code extension that adds a **single-line file header comment** with _filepath and optional role_ at the top of files.
+> Lightweight, zero-config file headers for AI chats and humans.  
+> A VS Code extension by **Apathetic Tools**.
 
-Useful when often copy and pasting files in chat to humans or AI.
+Adds a **single-line file header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
+Perfect for developers who often paste files into chat — whether to **AI assistants** or **other humans**.
 
 ## Features
 
-- Inserts **relative filepath + filename** as a comment at the top of the file.
-- Supports per-language comment styles (`//`, `#`, `<!-- -->`, etc.).
-- Optional **role/type hints** via glob patterns in settings.
-- Optional **language labels** (e.g. `(TypeScript React)`).
-- Minimal, fast, and MIT licensed.
-- Supports checked in `.vscode/settings.json` even with `.code-workspace`.
+- 🧭 Inserts **relative filepath + filename** as a comment at the top of the file.
+- 💬 Supports per-language comment styles (`//`, `#`, `<!-- -->`, etc.).
+- 🧩 Optional **role** hints via glob patterns in settings.
+- 🏷️ Optional language **format** modifier (e.g. `(TypeScript React)`).
+- ⚙️ Works with user, `.code-workspace`, `.vscode`, and `.file-header` settings.
+- ⚡ Minimal, fast, and MIT-licensed.
 
 ## Example
 
