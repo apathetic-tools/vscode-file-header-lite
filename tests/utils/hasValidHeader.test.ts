@@ -21,34 +21,36 @@ describe("hasValidHeader()", () => {
 	};
 
 	test("returns true when header contains relative path", () => {
-		const doc = makeMockDocument([
-			"// src/components/Button.tsx (React component)",
-		]);
+		const doc = makeMockDocument({
+			text: "// src/components/Button.tsx (React component)",
+		});
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 
 	test("returns true when header contains filename only", () => {
-		const doc = makeMockDocument(["// Button.tsx"]);
+		const doc = makeMockDocument({ text: "// Button.tsx" });
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 
 	test("returns false when comment does not contain file info", () => {
-		const doc = makeMockDocument(["// This is just a comment"]);
+		const doc = makeMockDocument({ text: "// This is just a comment" });
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("returns false when first line is not a comment", () => {
-		const doc = makeMockDocument(["import React from 'react';"]);
+		const doc = makeMockDocument({ text: "import React from 'react';" });
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("returns false for empty document", () => {
-		const doc = makeMockDocument([]);
+		const doc = makeMockDocument({});
 		expect(hasValidHeader(doc, paths)).toBe(false);
 	});
 
 	test("skips leading blank lines", () => {
-		const doc = makeMockDocument(["", "   ", "// src/components/Button.tsx"]);
+		const doc = makeMockDocument({
+			text: ["", "   ", "// src/components/Button.tsx"].join("\n"),
+		});
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 });

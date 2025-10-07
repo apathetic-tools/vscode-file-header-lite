@@ -15,9 +15,7 @@
 - [ ] **Refactor** insertion logic into a separate module (`src/core/headerInserter.ts`)
 - [ ] **Support full config schema**
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
-  - [ ] `useLanguagesById`: resolve by VS Code language ID
   - [ ] `useLanguagesByPath`: resolve by file path
-  - [ ] `matchStyle`: match header comment style
   - [ ] `languagesById`: per-language comment configuration
   - [ ] `languagesByPath`: custom language overrides
 - [ ] **Templates**
