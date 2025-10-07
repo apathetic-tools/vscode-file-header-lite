@@ -25,6 +25,7 @@ We use [Husky](https://typicode.github.io/husky/) and [lint-staged](https://gith
 ```sh
 pnpm format
 pnpm check
+pnpm test
 ```
 
 ## Note about VSCode and Node.js versions
@@ -133,7 +134,7 @@ When reviewing pull requests:
 ### Maintainer Review Checklist ✅
 
 - [ ] Fits the **lite spirit** (no unnecessary complexity).
-- [ ] CI checks passed (`pnpm check`).
+- [ ] CI checks passed (`pnpm verify`).
 - [ ] Tested in Extension Development Host (F5) → header inserts correctly, no duplicates.
 - [ ] Documentation (README/CONTRIBUTING) updated if behavior or config changed.
 - [ ] No version bump (maintainers handle this before publishing).
