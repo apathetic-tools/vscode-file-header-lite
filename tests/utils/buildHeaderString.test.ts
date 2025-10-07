@@ -24,7 +24,7 @@ import { makeDefaultConfig, makePaths } from "../helpers";
 describe("buildHeaderString()", () => {
 	const basePaths: PathList = makePaths("file.ts", "src");
 	const baseTemplate: ResolvedLanguageTemplate = {
-		header: "// ${headerLine}",
+		headerTemplate: "// ${headerLine}",
 		state: "enabled",
 		language: "TypeScript",
 		format: undefined,

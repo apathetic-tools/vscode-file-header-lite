@@ -45,16 +45,18 @@ describe("mergeConfig()", () => {
 
 	test("deep merges nested objects", () => {
 		const baseConfig = makeDefaultConfig({
-			languagesById: { typescript: { header: "// OLD", language: "TS" } },
+			languagesById: {
+				typescript: { headerTemplate: "// OLD", language: "TS" },
+			},
 		});
 
 		const userConfig: Partial<FileHeaderLiteConfig> = {
 			languagesById: {
 				typescript: {
-					header: "// NEW",
+					headerTemplate: "// NEW",
 				},
 				javascript: {
-					header: "// JS",
+					headerTemplate: "// JS",
 				},
 			},
 		};
@@ -63,10 +65,10 @@ describe("mergeConfig()", () => {
 
 		// Existing nested values should merge, not replace entirely
 		expect(result.languagesById.typescript.language).toBe("TS");
-		expect(result.languagesById.typescript.header).toBe("// NEW");
+		expect(result.languagesById.typescript.headerTemplate).toBe("// NEW");
 
 		// New key should appear
-		expect(result.languagesById.javascript.header).toBe("// JS");
+		expect(result.languagesById.javascript.headerTemplate).toBe("// JS");
 	});
 
 	test("replaces arrays instead of merging", () => {

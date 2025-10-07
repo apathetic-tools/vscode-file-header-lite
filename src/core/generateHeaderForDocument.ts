@@ -37,7 +37,8 @@ export function generateHeaderForDocument(
 		template = generateHeaderByPath(config, doc, paths);
 	}
 
-	if (!template || !template.header || template.state === "disabled") return;
+	if (!template || !template.headerTemplate || template.state === "disabled")
+		return;
 
 	const roleLabel = findRoleLabel(config, paths);
 	return buildHeaderString(config, template, paths, roleLabel);
@@ -55,10 +56,10 @@ export function generateHeaderByLanguageId(
 
 	// Skip unknown or disabled languages
 	if (!langEntry || langEntry.state === "disabled") return;
-	if (!langEntry.header) return;
+	if (!langEntry.headerTemplate) return;
 
 	return {
-		header: langEntry.header,
+		headerTemplate: langEntry.headerTemplate,
 		state: langEntry.state,
 		language: langEntry.language ?? langId,
 		format: langEntry.format,

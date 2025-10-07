@@ -15,7 +15,6 @@
 - [ ] **Refactor** insertion logic into a separate module (`src/core/headerInserter.ts`)
 - [ ] **Support full config schema**
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
-  - [ ] `useLanguagesByPath`: resolve by file path
   - [ ] `languagesByPath`: custom language overrides
 - [ ] **Templates**
   - [ ] Implement language template

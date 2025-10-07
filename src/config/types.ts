@@ -18,6 +18,26 @@ export interface FileHeaderLiteConfig {
 	/** Show matching role labels (e.g., “Page component”) */
 	showRoles: boolean;
 
+	// === Templates ===
+
+	/** Template to fill in the file path, `${filePath}` will be replaced.  */
+	filePathTemplate: TemplateString;
+
+	/** Template for the language, `${language}` will be replaced.  */
+	languageTemplate: TemplateString;
+
+	/** Template for the format, `${format}` will be replaced.  */
+	formatTemplate: TemplateString;
+
+	/** Template for the language + format, `${language}` and `${format}` will be replaced.  */
+	jointLanguageAndFormatTemplate: TemplateString;
+
+	/** Template for the context, `${context}` will be replaced.  */
+	contextTemplate: TemplateString;
+
+	/** Template for the role, `${role}` will be replaced.  */
+	roleTemplate: TemplateString;
+
 	// === Matching Toggles ===
 
 	/** Use VS Code language templates (keyed by languageId) */
@@ -61,12 +81,8 @@ export interface LanguagesByPath extends LanguageTemplate {
 
 /** Base language template format */
 export interface LanguageTemplate {
-	/**
-	 * Template string for the header comment.
-	 * Must include the `${headerLine}` placeholder, which will be replaced
-	 * with the computed file path or name.
-	 */
-	header: string;
+	/** Template for the entire header, `${headerLine}` will be replaced.  */
+	headerTemplate: TemplateString;
 
 	/** Override for match by this type of path */
 	matchStyle?: FilePathStyle;
@@ -74,8 +90,17 @@ export interface LanguageTemplate {
 	/** Override for displayed language label */
 	language?: LabelString;
 
+	/** Override template for the language, `${language}` will be replaced.  */
+	languageTemplate?: TemplateString;
+
 	/** Optional format name (e.g. "React", "GitHub Issue Template") */
 	format?: LabelString;
+
+	/** Override template for the language, `${format}` will be replaced.  */
+	formatTemplate?: TemplateString;
+
+	/** Override template for the language + format, `${language}` and `${format}` will be replaced.  */
+	jointLanguageAndFormatTemplate?: TemplateString;
 
 	/** Documentation metadata (used for generation, not runtime) */
 	docs?: DocSource | DocSource[];
@@ -94,6 +119,9 @@ export interface Role {
 
 	/** Label text to append */
 	role: LabelString;
+
+	/** Override template for the role, `${role}` will be replaced.  */
+	roleTemplate?: TemplateString;
 }
 
 /** A glob match entry */
@@ -107,11 +135,23 @@ export interface LangFileMatch {
 	/** Override language label */
 	language?: LabelString;
 
+	/** Override template for the language, `${language}` will be replaced.  */
+	languageTemplate?: TemplateString;
+
 	/** Override format label */
 	format?: LabelString;
 
+	/** Override template for the format, `${format}` will be replaced.  */
+	formatTemplate?: TemplateString;
+
+	/** Override template for the language + format, `${language}` and `${format}` will be replaced.  */
+	jointLanguageAndFormatTemplate?: TemplateString;
+
 	/** Optional context Label (e.g., variant or part) */
 	context?: LabelString;
+
+	/** Override template for the context, `${context}` will be replaced.  */
+	contextTemplate?: TemplateString;
 }
 
 export interface Glob {
@@ -139,5 +179,6 @@ export type CustomLangId = string;
 export type LabelString = string;
 export type GlobString = string;
 export type RoleId = string;
+export type TemplateString = string;
 export type URLString = string;
 export type VSCodeLangId = string;

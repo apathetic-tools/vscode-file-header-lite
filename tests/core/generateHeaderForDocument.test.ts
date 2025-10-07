@@ -35,7 +35,7 @@ describe("generateHeaderForDocument()", () => {
 
 	test("returns undefined when language has no header defined", () => {
 		const config = makeDefaultConfig();
-		config.languagesById.typescript.header = ""; // simulate missing template
+		config.languagesById.typescript.headerTemplate = ""; // simulate missing template
 		const doc = makeMockDocument({ languageId: "typescript" });
 		expect(generateHeaderForDocument(config, doc)).toBeUndefined();
 	});

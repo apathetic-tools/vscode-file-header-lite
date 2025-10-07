@@ -5,7 +5,7 @@ export type PathList = {
 };
 
 export interface ResolvedLanguageTemplate {
-	header: string;
+	headerTemplate: string;
 	state?: "enabled" | "disabled" | "fallback";
 	language?: string;
 	format?: string;

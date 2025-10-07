@@ -27,7 +27,7 @@ function formatLanguageLabel(
 	config: FileHeaderLiteConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
-	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
+	if (!langEntry || !langEntry.headerTemplate || langEntry.state === "disabled")
 		return "";
 
 	if (!config.showLanguage || !langEntry.language) return "";
@@ -39,7 +39,7 @@ function formatFormatLabel(
 	config: FileHeaderLiteConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
-	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
+	if (!langEntry || !langEntry.headerTemplate || langEntry.state === "disabled")
 		return "";
 
 	if (!config.showFormat || !langEntry.format) return "";
@@ -79,10 +79,10 @@ export function buildHeaderString(
 	paths: PathList,
 	roleLabel?: string,
 ): string | undefined {
-	if (!langEntry || !langEntry.header || langEntry.state === "disabled")
+	if (!langEntry || !langEntry.headerTemplate || langEntry.state === "disabled")
 		return "";
 
-	return langEntry.header.replace(
+	return langEntry.headerTemplate.replace(
 		"${headerLine}",
 		[
 			formatfileLabel(config, paths),
