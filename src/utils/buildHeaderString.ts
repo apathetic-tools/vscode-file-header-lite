@@ -1,6 +1,6 @@
 // src/utils/buildHeaderString.ts
 
-import type { FileHeaderLiteConfig } from "../config";
+import type { FileHeaderConfig } from "../config";
 import type { PathList, ResolvedLanguageTemplate } from "./types";
 
 /** Replace `${var}` tokens in a template string. */
@@ -9,10 +9,7 @@ function fillTemplate(template: string, vars: Record<string, string>): string {
 }
 
 /** Returns the file label according to config and path style. */
-function formatFileLabel(
-	config: FileHeaderLiteConfig,
-	paths: PathList,
-): string {
+function formatFileLabel(config: FileHeaderConfig, paths: PathList): string {
 	let pathValue = "";
 	switch (config.filePathStyle) {
 		case "filename":
@@ -31,7 +28,7 @@ function formatFileLabel(
 
 /** Returns the base language label (already humanized). */
 function partLanguageLabel(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
 	if (!langEntry || langEntry.state === "disabled") return "";
@@ -44,7 +41,7 @@ function partLanguageLabel(
 
 /** Returns the base format label. */
 function partFormatLabel(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
 	if (!langEntry || langEntry.state === "disabled") return "";
@@ -55,7 +52,7 @@ function partFormatLabel(
 
 /** Combine language + format templates according to config. */
 function formatLanguageAndFormatLabel(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
 	const language = partLanguageLabel(config, langEntry);
@@ -77,7 +74,7 @@ function formatLanguageAndFormatLabel(
 
 /** Optional context label (e.g., always based on a path). */
 function formatContextLabel(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	langEntry: ResolvedLanguageTemplate,
 ): string {
 	if (!langEntry.context) return "";
@@ -85,10 +82,7 @@ function formatContextLabel(
 }
 
 /** Optional role label (e.g., “Page component”). */
-function formatRoleLabel(
-	config: FileHeaderLiteConfig,
-	roleLabel?: string,
-): string {
+function formatRoleLabel(config: FileHeaderConfig, roleLabel?: string): string {
 	if (!config.showRoles || !roleLabel) return "";
 	return fillTemplate(config.roleTemplate, { role: roleLabel });
 }
@@ -100,7 +94,7 @@ function formatRoleLabel(
  * @returns Full header string (e.g. "// src/Button.tsx (TypeScript — React) [Page]")
  */
 export function buildHeaderString(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	langEntry: ResolvedLanguageTemplate,
 	paths: PathList,
 	roleLabel?: string,

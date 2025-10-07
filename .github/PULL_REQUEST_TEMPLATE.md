@@ -1,6 +1,6 @@
 # Pull Request
 
-Thank you for contributing to **vscode-file-header-lite**!  
+Thank you for contributing to **vscode-file-header**!  
 Please use this template to make sure your PR is easy to review.
 
 ## Type of Change

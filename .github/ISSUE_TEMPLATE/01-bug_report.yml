@@ -1,7 +1,7 @@
 # .guthub/ISSUE_TEMPLATE/01-bug_report.yml
 
 name: "🐞 Bug report"
-description: Report a problem with vscode-file-header-lite
+description: Report a problem with vscode-file-header
 labels: ["bug"]
 body:
   - type: textarea

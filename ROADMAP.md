@@ -2,7 +2,7 @@
 
 # 📘 Roadmap / TODO
 
-Ongoing overview of goals, priorities, and planned work for **file-header-lite**.
+Ongoing overview of goals, priorities, and planned work for **file-header**.
 
 > [!NOTE]
 > This roadmap is not a commitment or release schedule — just a guide to focus development.
@@ -90,9 +90,9 @@ Packaging, publishing, and release automation.
 
 Longer-term structure, maintainability, and extensibility.
 
-- [ ] Extract `file-header-lite` as a standalone NPM library
+- [ ] Extract `file-header` as a standalone NPM library
   - [ ] Share logic between extension and CLI
-- [ ] Create a lightweight CLI (`npx file-header-lite`) for bulk updates
+- [ ] Create a lightweight CLI (`npx file-header`) for bulk updates
 - [ ] Add type-safe plugin interface for custom header rules
 - [ ] Evaluate rewrite in Go for speed and portability (future exploration)
 - [ ] Improve internal naming consistency

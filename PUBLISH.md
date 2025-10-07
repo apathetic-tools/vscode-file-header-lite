@@ -1,6 +1,6 @@
 # <!-- PUBLISH.md -->
 
-# Publishing vscode-file-header-lite
+# Publishing vscode-file-header
 
 This guide is for maintainers who publish new versions of the extension.
 
@@ -45,7 +45,7 @@ vsce login apathetic-tools
    pnpm package
    ```
 
-   This creates `vscode-file-header-lite-x.y.z.vsix`.
+   This creates `vscode-file-header-x.y.z.vsix`.
 
 4. **Publish to Marketplace**
    ```sh
@@ -59,7 +59,7 @@ vsce login apathetic-tools
 - The extension should appear/refresh on the [Marketplace page](https://marketplace.visualstudio.com/manage).
 - Optionally test by installing the `.vsix` directly:
   ```sh
-  code --install-extension vscode-file-header-lite-x.y.z.vsix
+  code --install-extension vscode-file-header-x.y.z.vsix
   ```
 
 ---
@@ -92,5 +92,5 @@ vsce login apathetic-tools
 
 ---
 
-📦 Published to the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite).
+📦 Published to the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header).
 ```

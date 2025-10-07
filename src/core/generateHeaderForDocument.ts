@@ -1,7 +1,7 @@
 // src/core/headerInserter.ts
 
 import type * as vscode from "vscode";
-import type { FileHeaderLiteConfig } from "../config";
+import type { FileHeaderConfig } from "../config";
 import {
 	buildHeaderString,
 	findRoleLabel,
@@ -15,7 +15,7 @@ import {
  * Returns `undefined` if no header should be added.
  */
 export function generateHeaderForDocument(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	doc: vscode.TextDocument,
 ): string | undefined {
 	const paths = getFilePaths(doc);
@@ -48,7 +48,7 @@ export function generateHeaderForDocument(
  * Generate header based on VS Code language ID (languagesById).
  */
 export function generateHeaderByLanguageId(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	doc: vscode.TextDocument,
 ): ResolvedLanguageTemplate | undefined {
 	const langId = doc.languageId;
@@ -72,7 +72,7 @@ export function generateHeaderByLanguageId(
  * (Stub for future implementation)
  */
 export function generateHeaderByPath(
-	_config: FileHeaderLiteConfig,
+	_config: FileHeaderConfig,
 	_doc: vscode.TextDocument,
 	_paths: ReturnType<typeof getFilePaths>,
 ): ResolvedLanguageTemplate | undefined {

@@ -8,7 +8,7 @@
   ✓ replaces arrays instead of merging
 */
 
-import type { FileHeaderLiteConfig } from "../../src/config";
+import type { FileHeaderConfig } from "../../src/config";
 import { mergeConfig } from "../../src/utils/mergeConfig";
 import { makeDefaultConfig } from "../helpers";
 
@@ -21,7 +21,7 @@ describe("mergeConfig()", () => {
 
 	test("overrides primitive values from user config", () => {
 		const baseConfig = makeDefaultConfig();
-		const userConfig: Partial<FileHeaderLiteConfig> = {
+		const userConfig: Partial<FileHeaderConfig> = {
 			autoUpdate: false,
 			filePathStyle: "filename",
 		};
@@ -34,7 +34,7 @@ describe("mergeConfig()", () => {
 
 	test("does not override defaults when user value is undefined", () => {
 		const baseConfig = makeDefaultConfig();
-		const userConfig: Partial<FileHeaderLiteConfig> = {
+		const userConfig: Partial<FileHeaderConfig> = {
 			autoUpdate: undefined,
 		};
 
@@ -50,7 +50,7 @@ describe("mergeConfig()", () => {
 			},
 		});
 
-		const userConfig: Partial<FileHeaderLiteConfig> = {
+		const userConfig: Partial<FileHeaderConfig> = {
 			languagesById: {
 				typescript: {
 					headerTemplate: "// NEW",

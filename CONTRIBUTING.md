@@ -1,6 +1,6 @@
 <!-- CONTRIBUTING.md -->
 
-# Contributing to vscode-file-header-lite
+# Contributing to vscode-file-header
 
 Thanks for your interest in contributing!  
 This guide covers setup, development workflow, packaging, and publishing.
@@ -103,7 +103,7 @@ pnpm package
 Install locally:
 
 ```sh
-code --install-extension vscode-file-header-lite-x.y.z.vsix
+code --install-extension vscode-file-header-x.y.z.vsix
 ```
 
 ## Publishing

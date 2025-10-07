@@ -1,19 +1,21 @@
 {
-  "name": "vscode-file-header-lite",
-  "displayName": "File Header Lite",
+  "name": "vscode-file-header",
+  "displayName": "File Header for AI",
   "version": "0.0.1",
-  "description": "Adds a single-line file header comment with filepath and optional role.",
+  "description": "Lightweight, zero-config file headers for AI chats and humans",
   "keywords": [
-    "header",
-    "filename",
+    "file header",
+    "comment header",
     "filepath",
+    "filename",
+    "AI chat",
     "context"
   ],
   "author": {
     "name": "Apathetic Tools",
     "url": "https://github.com/apathetic-tools"
   },
-  "publisher": "apathetic-tools",
+  "publisher": "apathetic",
   "license": "MIT",
   "icon": "images/icon.png",
   "type": "commonjs",

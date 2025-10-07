@@ -1,6 +1,6 @@
 // tests/helpers/makeDefaultConfig.ts
 
-import type { FileHeaderLiteConfig } from "../../src/config";
+import type { FileHeaderConfig } from "../../src/config";
 import { defaultConfig } from "../../src/config";
 
 /**
@@ -10,8 +10,8 @@ import { defaultConfig } from "../../src/config";
  * This ensures tests remain stable even if `defaultConfig` changes shape later.
  */
 export function makeDefaultConfig(
-	overrides: Partial<FileHeaderLiteConfig> = {},
-): FileHeaderLiteConfig {
+	overrides: Partial<FileHeaderConfig> = {},
+): FileHeaderConfig {
 	// Deep clone so tests never mutate the shared default
 	const clone = structuredClone(defaultConfig);
 	return {

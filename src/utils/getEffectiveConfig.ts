@@ -1,14 +1,14 @@
 // src/utils/getEffectiveConfig.ts
 import * as vscode from "vscode";
-import { type FileHeaderLiteConfig } from "../config";
+import { type FileHeaderConfig } from "../config";
 import { mergeConfig } from "./mergeConfig";
 
 export function getEffectiveConfig(
-	defaultConfig: FileHeaderLiteConfig,
+	defaultConfig: FileHeaderConfig,
 	vsConfig: vscode.WorkspaceConfiguration,
-): FileHeaderLiteConfig {
+): FileHeaderConfig {
 	// Explicitly build a plain object from the workspace settings
-	const userConfig: Partial<FileHeaderLiteConfig> = {
+	const userConfig: Partial<FileHeaderConfig> = {
 		autoUpdate: vsConfig.get("autoUpdate"),
 		filePathStyle: vsConfig.get("filePathStyle"),
 		showLanguage: vsConfig.get("showLanguage"),

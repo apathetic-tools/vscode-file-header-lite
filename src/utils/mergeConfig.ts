@@ -1,5 +1,5 @@
 // src/utils/mergeConfig.ts
-import { type FileHeaderLiteConfig } from "../config";
+import { type FileHeaderConfig } from "../config";
 
 /**
  * Recursively merges user config into defaults.
@@ -8,9 +8,9 @@ import { type FileHeaderLiteConfig } from "../config";
  * - Replaces arrays and primitives
  */
 export function mergeConfig(
-	defaultConfig: FileHeaderLiteConfig,
-	userConfig: Partial<FileHeaderLiteConfig>,
-): FileHeaderLiteConfig {
+	defaultConfig: FileHeaderConfig,
+	userConfig: Partial<FileHeaderConfig>,
+): FileHeaderConfig {
 	return deepMerge(defaultConfig, userConfig);
 }
 

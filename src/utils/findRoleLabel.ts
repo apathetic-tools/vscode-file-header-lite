@@ -1,11 +1,11 @@
 // src/utils/findRoleLabel
 import { minimatch } from "minimatch";
-import type { FileHeaderLiteConfig } from "../config";
+import type { FileHeaderConfig } from "../config";
 import { getPathForMatch } from "./getPathForMatch";
 import type { PathList } from "./types";
 
 export function findRoleLabel(
-	config: FileHeaderLiteConfig,
+	config: FileHeaderConfig,
 	paths: PathList,
 ): string | undefined {
 	if (!config.roles) return;

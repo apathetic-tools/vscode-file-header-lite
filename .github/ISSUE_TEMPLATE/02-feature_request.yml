@@ -1,7 +1,7 @@
 # .guthub/ISSUE_TEMPLATE/02-feature_request.yml
 
 name: "✨ Feature request"
-description: Suggest an improvement for vscode-file-header-lite
+description: Suggest an improvement for vscode-file-header
 labels: ["enhancement"]
 body:
   - type: textarea

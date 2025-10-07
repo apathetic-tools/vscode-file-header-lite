@@ -1,13 +1,13 @@
 <!-- README.md -->
 
-# vscode-file-header-lite
+# vscode-file-header
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic-tools.vscode-file-header-lite?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic-tools.vscode-file-header-lite?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header-lite)
-[![CI](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header-lite/actions/workflows/ci.yml)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic-tools.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic-tools.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header)
+[![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-📘 **[Roadmap](./Roadmap.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header-lite/releases)**
+📘 **[Roadmap](./Roadmap.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
 
 Lightweight VS Code extension that adds a **single-line file header comment** with _filepath and optional role_ at the top of files.
 
@@ -56,7 +56,7 @@ Or, for local builds:
 
 ```sh
 pnpm vsce package
-code --install-extension vscode-file-header-lite-0.0.1.vsix
+code --install-extension vscode-file-header-0.0.1.vsix
 ```
 
 ## Contributing

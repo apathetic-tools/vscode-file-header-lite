@@ -1,6 +1,6 @@
 // src/configTypes.ts
 
-export interface FileHeaderLiteConfig {
+export interface FileHeaderConfig {
 	/** Replace an outdated header path when file moves */
 	autoUpdate: boolean;
 
