@@ -28,7 +28,7 @@ describe("buildHeaderString()", () => {
 	});
 
 	test("returns empty string when language is disabled", () => {
-		const config = structuredClone(makeDefaultConfig());
+		const config = makeDefaultConfig();
 		config.languagesById.typescript.state = "disabled";
 		expect(buildHeaderString(config, "typescript", basePaths)).toBe("");
 	});
