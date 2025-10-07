@@ -1,5 +1,6 @@
 // vitest.config.ts
 
+import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
@@ -11,6 +12,8 @@ export default defineConfig({
 	test: {
 		globals: true, // enable describe(), it(), expect()
 		environment: "node", // node, not jsdom
+		setupFiles: [],
+		mockReset: true,
 		include: ["tests/**/*.test.ts"], // your test folder pattern
 		typecheck: {
 			tsconfig: "./tsconfig.tests.json", // ensures type checking uses test config
@@ -18,6 +21,11 @@ export default defineConfig({
 		coverage: {
 			provider: "v8",
 			reporter: ["text", "html"],
+		},
+	},
+	resolve: {
+		alias: {
+			vscode: path.resolve(__dirname, "./tests/__mocks__/vscode.ts"),
 		},
 	},
 });
