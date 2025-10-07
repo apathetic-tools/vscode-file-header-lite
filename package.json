@@ -72,13 +72,14 @@
     "lint:prettier": "prettier --check .",
     "lint:eslint": "eslint . --ext .ts",
     "lint:tsc": "tsc --noEmit -p tsconfig.build.json",
-    "fix": "pnpm run lint:fix:prettier && pnpm run lint:fix:eslint && pnpm run lint:tsc",
-    "lint:prettier:fix": "prettier --write .",
-    "lint:fix:eslint": "eslint . --ext .ts --fix",
+    "fix": "pnpm run fix:prettier & pnpm run fix:eslint & pnpm run lint:tsc",
+    "fix:prettier:": "prettier --write .",
+    "fix:eslint": "eslint . --ext .ts --fix",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "verify": "pnpm run lint:prettier & pnpm run lint:eslint & pnpm run lint:tsc & pnpm run test"
   },
   "dependencies": {
     "minimatch": "^10.0.3"

@@ -22,7 +22,7 @@ import type { ResolvedLanguageTemplate } from "../../src/utils/types";
 import { makeDefaultConfig, makePaths } from "../helpers";
 
 describe("buildHeaderString()", () => {
-	const basePaths: PathList = makePaths("file.ts", "Src");
+	const basePaths: PathList = makePaths("file.ts", "src");
 	const baseTemplate: ResolvedLanguageTemplate = {
 		header: "// ${headerLine}",
 		state: "enabled",
