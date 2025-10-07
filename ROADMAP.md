@@ -17,13 +17,17 @@
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
   - [ ] `filePathStyle`: relative vs. absolute
   - [ ] `showFormat`: include format or file extension
-  - [ ] `showRoles`: include roles section if defined
   - [ ] `useLanguagesById`: resolve by VS Code language ID
   - [ ] `useLanguagesByPath`: resolve by file path
   - [ ] `matchStyle`: match header comment style
   - [ ] `languagesById`: per-language comment configuration
   - [ ] `languagesByPath`: custom language overrides
   - [ ] `roles`: user-defined header roles
+- [ ] **Templates**
+  - [ ] Implement language template
+  - [ ] Implement format template
+  - [ ] Implement role template
+  - [ ] Implement context template
 - [ ] **Shebang Support**
   - [ ] Insert after `#!` line when present
 - [ ] **Header Detection**

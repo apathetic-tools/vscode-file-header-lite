@@ -6,6 +6,8 @@
  ✓ returns empty string when language is disabled
  ✓ includes language label when showLanguage=true
  ✓ omits language label when showLanguage=false
+ ✓ includes role label when showRoles=true
+ ✓ omits role label when showRoles=false 
 */
 
 import { buildHeaderString } from "../../src/utils/buildHeaderString";
@@ -61,5 +63,43 @@ describe("buildHeaderString()", () => {
 		});
 		const header = buildHeaderString(config, "typescript", basePaths);
 		expect(header).not.toContain("TypeScript");
+	});
+
+	test("includes role label when showRoles=true", () => {
+		const config = makeDefaultConfig({
+			showRoles: true,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+				},
+			},
+		});
+		const header = buildHeaderString(
+			config,
+			"typescript",
+			basePaths,
+			"React component",
+		);
+		expect(header).toContain("React component");
+	});
+
+	test("omits role label when showRoles=false", () => {
+		const config = makeDefaultConfig({
+			showRoles: false,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+				},
+			},
+		});
+		const header = buildHeaderString(
+			config,
+			"typescript",
+			basePaths,
+			"React component",
+		);
+		expect(header).not.toContain("React component");
 	});
 });

@@ -37,9 +37,12 @@ function formatLanguageLabel(
 	return langLabel;
 }
 
-function formatRoleLabel(roleLabel?: string): string {
-	const roleText = roleLabel ? ` ${roleLabel}` : "";
-	return roleText;
+function formatRoleLabel(
+	config: FileHeaderLiteConfig,
+	roleLabel?: string,
+): string {
+	if (!config.showRoles || !roleLabel) return "";
+	return ` ${roleLabel}`;
 }
 
 export function buildHeaderString(
@@ -57,7 +60,7 @@ export function buildHeaderString(
 		[
 			formatfileLabel(config, paths),
 			formatLanguageLabel(config, languageId),
-			formatRoleLabel(roleLabel),
+			formatRoleLabel(config, roleLabel),
 		].join(""),
 	);
 }
