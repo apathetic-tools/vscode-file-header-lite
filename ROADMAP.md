@@ -46,10 +46,14 @@ Enhancing configurability, schema validation, and migration.
 
 - [ ] Fill out `languagesByPath` and special-case defaults (`.gitignore`, `.vscode/`, `.github/`)
 - [ ] Implement full config schema support
-- [ ] Expose `filenameHeader.languages` in VS Code settings (`contributes.configuration`)
+- [ ] Expose `fileHeader.languages` in VS Code settings (`contributes.configuration`)
+- [ ] Update `package.json` to include all `fileHeader.*` configuration keys
+- [ ] Update usage documentation in README (especially configuration section)
+  - [ ] Verify `CONTRIBUTING.md` remains accurate after config updates
 - [ ] Support JSONC for config files
 - [ ] Evaluate default role mappings for common project structures
 - [ ] Improve config discovery / override logic (🤖?)
+- [ ] Support `.json` or `.jsonc` extension name, parse both as jsonc.
 
 ## 🪶 Editor Integration
 

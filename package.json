@@ -41,7 +41,7 @@
     "configuration": {
       "title": "File Header for AI",
       "properties": {
-        "filenameHeader.languages": {
+        "fileHeader.languages": {
           "type": "object",
           "default": {
             "javascript": "// ${relativeFile}",
@@ -52,13 +52,13 @@
           "description": "Map of language id to header format. Supports ${fileName} and ${relativeFile}.",
           "scope": "resource"
         },
-        "filenameHeader.roles": {
+        "fileHeader.roles": {
           "type": "object",
           "default": {},
           "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
           "scope": "resource"
         },
-        "filenameHeader.addLanguageLabel": {
+        "fileHeader.addLanguageLabel": {
           "type": "boolean",
           "default": true,
           "description": "Whether to automatically append a human-readable language label (e.g. '(TypeScript React)').",

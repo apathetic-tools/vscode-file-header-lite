@@ -1,9 +1,9 @@
 <!-- README.md -->
 
-# vscode-file-header
+# File Header for AI
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic-tools.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic-tools.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.file-header-for-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-for-ai)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.file-header-for-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-for-ai)
 [![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
@@ -12,7 +12,7 @@
 > Lightweight, zero-config file headers for AI chats and humans.  
 > A VS Code extension by **Apathetic Tools**.
 
-Adds a **single-line file header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
+Adds a **single-line file-header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
 Perfect for developers who often paste files into chat — whether to **AI assistants** or **other humans**.
 
 ## Features
@@ -27,29 +27,8 @@ Perfect for developers who often paste files into chat — whether to **AI assis
 ## Example
 
 ```ts
-// src/components/Button.tsx (TypeScript React, React component)
+// src/components/Button.tsx (TypeScript React)
 ```
-
-## Configuration
-
-In `.vscode/settings.json` or `.code-workspace`:
-
-```json
-{
-  "filenameHeader.languages": {
-    "javascript": "// ${relativeFile}",
-    "python": "# ${relativeFile}"
-  },
-  "filenameHeader.roles": {
-    "src/components/*": "React component",
-    "src/pages/*": "Page component"
-  },
-  "filenameHeader.addLanguageLabel": true
-}
-```
-
-- ${fileName} → just the basename
-- ${relativeFile} → project-relative path
 
 ## Installation
 
@@ -60,6 +39,19 @@ Or, for local builds:
 pnpm vsce package
 code --install-extension vscode-file-header-0.0.1.vsix
 ```
+
+## Configuration
+
+Zero-configuration by default — sensible, non-destructive behavior out of the box.
+Configure only if you want to modify defaults or extend functionality.
+
+Settings can be added in `.vscode/settings.json`, `.code-workspace`, or a local `.fileheader.json` config:
+
+## Roadmap
+
+Version 1.0 will be **feature complete** for everyday and AI-chat use.  
+Future updates may expand configurability.  
+See [Roadmap.md](./Roadmap.md) for details.
 
 ## Contributing
 

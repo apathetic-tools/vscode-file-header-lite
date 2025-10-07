@@ -9,7 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const doc = event.document;
 		if (doc.isUntitled || doc.lineCount === 0) return;
 
-		const vsConfig = vscode.workspace.getConfiguration("filenameHeader");
+		const vsConfig = vscode.workspace.getConfiguration("fileHeader");
 		const config = getEffectiveConfig(defaultConfig, vsConfig);
 
 		const finalHeader = generateHeaderForDocument(config, doc);
