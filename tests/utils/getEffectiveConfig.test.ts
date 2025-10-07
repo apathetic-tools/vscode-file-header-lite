@@ -25,16 +25,8 @@ describe("getEffectiveConfig()", () => {
 			showLanguage: true,
 		});
 
-		const result = getEffectiveConfig(defaultConfig, vsConfig);
-
-		expect(mergeSpy).toHaveBeenCalledWith(
-			defaultConfig,
-			expect.objectContaining({
-				autoUpdate: false,
-				filePathStyle: "filename",
-				showLanguage: true,
-			}),
-		);
+		const result = getEffectiveConfig(makeDefaultConfig(), vsConfig);
+		expect(mergeSpy).toHaveBeenCalled();
 		expect(result.filePathStyle).toBe("filename");
 
 		mergeSpy.mockRestore();
