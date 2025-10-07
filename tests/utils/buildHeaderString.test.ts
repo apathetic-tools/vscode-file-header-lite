@@ -4,6 +4,8 @@
  ✓ returns correct header
  ✓ respects filePathStyle = 'filename'
  ✓ returns empty string when language is disabled
+ ✓ includes language label when showLanguage=true
+ ✓ omits language label when showLanguage=false
 */
 
 import { buildHeaderString } from "../../src/utils/buildHeaderString";
@@ -31,5 +33,33 @@ describe("buildHeaderString()", () => {
 		const config = makeDefaultConfig();
 		config.languagesById.typescript.state = "disabled";
 		expect(buildHeaderString(config, "typescript", basePaths)).toBe("");
+	});
+
+	test("includes language label when showLanguage=true", () => {
+		const config = makeDefaultConfig({
+			showLanguage: true,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", basePaths);
+		expect(header).toContain("TypeScript");
+	});
+
+	test("omits language label when showLanguage=false", () => {
+		const config = makeDefaultConfig({
+			showLanguage: false,
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+				},
+			},
+		});
+		const header = buildHeaderString(config, "typescript", basePaths);
+		expect(header).not.toContain("TypeScript");
 	});
 });

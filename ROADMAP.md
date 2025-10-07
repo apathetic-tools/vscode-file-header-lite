@@ -16,7 +16,6 @@
 - [ ] **Support full config schema**
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
   - [ ] `filePathStyle`: relative vs. absolute
-  - [ ] `showLanguage`: include language name in header
   - [ ] `showFormat`: include format or file extension
   - [ ] `showRoles`: include roles section if defined
   - [ ] `useLanguagesById`: resolve by VS Code language ID
@@ -43,9 +42,6 @@
 
 ## 🧪 Testing
 
-- [ ] **Unit Tests**
-  - [ ] `/src/utils` (e.g., `getFileInfo`, `getCommentStyle`)
-  - [ ] `/src/config` (schema defaults, overrides)
 - [ ] **Integration Tests**
   - [ ] `activate()` lifecycle (mock VS Code API)
   - [ ] `insertHeader()` end-to-end (temporary file workspace)
