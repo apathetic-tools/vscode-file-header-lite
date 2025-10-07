@@ -5,6 +5,9 @@
 	✓ returns undefined when no roles defined
 	✓ returns undefined when no glob matches
 	✓ ignores disabled roles
+	✓ respects global matchStyle = 'filename'
+	✓ respects role-specific matchStyle = 'absolutePath'
+	✓ falls back to config.matchStyle when role.matchStyle is not set
 */
 
 import { findRoleLabel } from "../../src/utils/findRoleLabel";
@@ -58,5 +61,51 @@ describe("findRoleLabel()", () => {
 
 		const result = findRoleLabel(config, basePaths);
 		expect(result).toBeUndefined();
+	});
+
+	test("respects global matchStyle = 'filename'", () => {
+		const config = makeDefaultConfig({
+			matchStyle: "filename",
+			roles: {
+				component: {
+					glob: "Button.tsx",
+					role: "React component",
+				},
+			},
+		});
+		const paths = makePaths("Button.tsx", "src/components");
+		const result = findRoleLabel(config, paths);
+		expect(result).toBe("React component");
+	});
+
+	test("respects role-specific matchStyle = 'absolutePath'", () => {
+		const config = makeDefaultConfig({
+			matchStyle: "relativePath", // global fallback ignored here
+			roles: {
+				component: {
+					glob: "/abs/src/components/*",
+					role: "React component",
+					matchStyle: "absolutePath",
+				},
+			},
+		});
+		const paths = makePaths("Button.tsx", "src/components", "abs");
+		const result = findRoleLabel(config, paths);
+		expect(result).toBe("React component");
+	});
+
+	test("falls back to config.matchStyle when role.matchStyle is not set", () => {
+		const config = makeDefaultConfig({
+			matchStyle: "relativePath",
+			roles: {
+				component: {
+					glob: "src/components/*",
+					role: "React component",
+				},
+			},
+		});
+		const paths = makePaths("Button.tsx", "src/components");
+		const result = findRoleLabel(config, paths);
+		expect(result).toBe("React component");
 	});
 });

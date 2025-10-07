@@ -42,7 +42,7 @@ export interface FileHeaderLiteConfig {
 }
 
 /** Language header template keyed by VSCode language ID */
-interface LanguagesById extends LanguageTemplate {
+export interface LanguagesById extends LanguageTemplate {
 	/** Template state (default: "enabled"; "fallback" = defer to FilepathTemplate) */
 	state?: "enabled" | "disabled" | "fallback";
 
@@ -51,7 +51,7 @@ interface LanguagesById extends LanguageTemplate {
 }
 
 /** Language header template keyed by filename/glob */
-interface LanguagesByPath extends LanguageTemplate {
+export interface LanguagesByPath extends LanguageTemplate {
 	/** Template state (default: "enabled") */
 	state?: "enabled" | "disabled";
 
@@ -60,7 +60,7 @@ interface LanguagesByPath extends LanguageTemplate {
 }
 
 /** Base language template format */
-interface LanguageTemplate {
+export interface LanguageTemplate {
 	/**
 	 * Template string for the header comment.
 	 * Must include the `${headerLine}` placeholder, which will be replaced
@@ -82,7 +82,7 @@ interface LanguageTemplate {
 }
 
 /** Role configuration for globs */
-interface Role {
+export interface Role {
 	/** Role state (default: "enabled") */
 	state?: "enabled" | "disabled";
 
@@ -97,7 +97,7 @@ interface Role {
 }
 
 /** A glob match entry */
-interface LangFileMatch {
+export interface LangFileMatch {
 	/** Override for match by this type of path */
 	matchStyle?: FilePathStyle;
 
@@ -114,7 +114,7 @@ interface LangFileMatch {
 	context?: LabelString;
 }
 
-interface Glob {
+export interface Glob {
 	/** Override for match by this type of path */
 	matchStyle?: FilePathStyle;
 
@@ -123,21 +123,21 @@ interface Glob {
 }
 
 /** Documentation metadata (used for generation, not runtime) */
-interface DocSource {
+export interface DocSource {
 	note?: string;
 	url?: URLString;
 }
 
 /** What kind of path matching style to use */
-type FilePathStyle = "filename" | "relativePath" | "absolutePath";
+export type FilePathStyle = "filename" | "relativePath" | "absolutePath";
 
 // === Primitives for export ===
 export type Roles = Record<RoleId, Role>;
 
 // === Common string primitives for clarity ===
-type CustomLangId = string;
-type LabelString = string;
-type GlobString = string;
-type RoleId = string;
-type URLString = string;
-type VSCodeLangId = string;
+export type CustomLangId = string;
+export type LabelString = string;
+export type GlobString = string;
+export type RoleId = string;
+export type URLString = string;
+export type VSCodeLangId = string;
