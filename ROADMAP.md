@@ -16,7 +16,6 @@
 - [ ] **Support full config schema**
   - [ ] `autoUpdate`: auto-reinsert header on save (via `workspace.onDidSaveTextDocument`)
   - [ ] `filePathStyle`: relative vs. absolute
-  - [ ] `showFormat`: include format or file extension
   - [ ] `useLanguagesById`: resolve by VS Code language ID
   - [ ] `useLanguagesByPath`: resolve by file path
   - [ ] `matchStyle`: match header comment style

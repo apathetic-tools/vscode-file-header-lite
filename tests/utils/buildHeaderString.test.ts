@@ -8,10 +8,15 @@
  ✓ omits language label when showLanguage=false
  ✓ includes role label when showRoles=true
  ✓ omits role label when showRoles=false 
+ ✓ includes format label when showFormat=true
+ ✓ omits format label when showFormat=false
+ ✓ includes both language and format joined by em dash
+ ✓ includes only language when no format defined
+ ✓ includes role when matching role glob and showRoles=true
+ ✓ omits role when showRoles=false
 */
 
-import { buildHeaderString } from "../../src/utils/buildHeaderString";
-import { PathList } from "../../src/utils/types";
+import { PathList, buildHeaderString, findRoleLabel } from "../../src/utils";
 import { makeDefaultConfig, makePaths } from "../helpers";
 
 describe("buildHeaderString()", () => {
@@ -161,5 +166,56 @@ describe("buildHeaderString()", () => {
 		const header = buildHeaderString(config, "typescript", makePaths());
 		expect(header).toContain("(TypeScript)");
 		expect(header).not.toContain("—");
+	});
+
+	test("includes role when matching role glob and showRoles=true", () => {
+		const config = makeDefaultConfig({
+			showRoles: true,
+			roles: {
+				component: {
+					glob: "src/components/*",
+					role: "React component",
+				},
+			},
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+					format: "React",
+				},
+			},
+		});
+
+		const paths = makePaths("Button.tsx", "src/components");
+		const roleLabel = findRoleLabel(config, paths);
+		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+
+		expect(header).toContain("React component");
+		expect(header).toContain("—");
+	});
+
+	test("omits role when showRoles=false", () => {
+		const config = makeDefaultConfig({
+			showRoles: false,
+			roles: {
+				component: {
+					glob: "src/components/*",
+					role: "React component",
+				},
+			},
+			languagesById: {
+				typescript: {
+					header: "// ${headerLine}",
+					language: "TypeScript",
+					format: "React",
+				},
+			},
+		});
+
+		const paths = makePaths("Button.tsx", "src/components");
+		const roleLabel = findRoleLabel(config, paths);
+		const header = buildHeaderString(config, "typescript", paths, roleLabel);
+
+		expect(header).not.toContain("React component");
 	});
 });
