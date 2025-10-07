@@ -5,21 +5,19 @@
 	✓ handles missing workspace settings gracefully
 */
 
-import type { FileHeaderLiteConfig } from "../../src/config";
 import { defaultConfig } from "../../src/config";
 import { getEffectiveConfig } from "../../src/utils/getEffectiveConfig";
 import * as mergeConfigModule from "../../src/utils/mergeConfig";
-import { mockVsConfig } from "../helpers";
+import { makeDefaultConfig, mockVsConfig } from "../helpers";
 
 describe("getEffectiveConfig()", () => {
 	test("calls mergeConfig with default and user config", () => {
-		const mergeSpy = vi
-			.spyOn(mergeConfigModule, "mergeConfig")
-			.mockReturnValue({
-				...defaultConfig,
+		const mergeSpy = vi.spyOn(mergeConfigModule, "mergeConfig").mockReturnValue(
+			makeDefaultConfig({
 				autoUpdate: false,
 				filePathStyle: "filename",
-			} as FileHeaderLiteConfig);
+			}),
+		);
 
 		const vsConfig = mockVsConfig({
 			autoUpdate: false,
@@ -49,7 +47,7 @@ describe("getEffectiveConfig()", () => {
 
 		const vsConfig = mockVsConfig();
 
-		const result = getEffectiveConfig(defaultConfig, vsConfig);
+		const result = getEffectiveConfig(makeDefaultConfig(), vsConfig);
 
 		expect(mergeSpy).toHaveBeenCalledWith(
 			defaultConfig,
