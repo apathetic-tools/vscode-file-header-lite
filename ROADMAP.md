@@ -38,6 +38,7 @@ Core logic for detecting, generating, and updating headers.
 - [ ] Handle edge cases like generated / ignored files (🤖?)
 - [ ] Configurable multi-line comment styles (🤖?)
 - [ ] Smarter detection of existing headers (🤖?)
+- [ ] Log errors like skipped insertions due to required config missing
 
 ## ⚙️ Configuration
 

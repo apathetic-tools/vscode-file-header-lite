@@ -10,5 +10,4 @@ export interface ResolvedLanguageTemplate {
 	language?: string;
 	format?: string;
 	context?: string;
-	role?: string;
 }

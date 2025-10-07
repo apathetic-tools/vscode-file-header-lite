@@ -1,20 +1,34 @@
 // tests/utils/buildHeaderString.test.ts
 
 /*
+   Core behavior:
  ✓ returns correct header
  ✓ respects filePathStyle = 'filename'
- ✓ returns empty string when language is disabled
+ ✓ returns undefined when language is disabled
+ ✓ includes both language and format joined by em dash
+ ✓ includes only language when no format defined
+ ✓ includes role when role glob matches and showRoles=true
+ ✓ omits role when no role glob matches and showRoles=true
+ ✓ respects filePathStyle for display only (not matching)
+
+   Visibility toggles:
  ✓ includes language label when showLanguage=true
  ✓ omits language label when showLanguage=false
  ✓ includes role label when showRoles=true
  ✓ omits role label when showRoles=false 
  ✓ includes format label when showFormat=true
  ✓ omits format label when showFormat=false
- ✓ includes both language and format joined by em dash
- ✓ includes only language when no format defined
- ✓ includes role when matching role glob and showRoles=true
- ✓ omits role when showRoles=false
- ✓ respects filePathStyle for display only (not matching)
+
+   Template customization:
+ ✓ returns undefined when headerTemplate missing
+ ✓ applies custom filePathTemplate
+ ✓ applies custom languageTemplate
+ ✓ applies custom formatTemplate
+ ✓ applies custom jointLanguageAndFormatTemplate
+ ✓ applies contextTemplate when context defined
+ ✓ applies roleTemplate when showRoles=true
+
+	Safety & integrity:
 */
 
 import { PathList, buildHeaderString, findRoleLabel } from "../../src/utils";
@@ -45,10 +59,12 @@ describe("buildHeaderString()", () => {
 		expect(header).not.toContain("src/file.ts");
 	});
 
-	test("returns empty string when language is disabled", () => {
+	test("returns undefined when language is disabled", () => {
 		const config = makeDefaultConfig();
 		const disabledTemplate = { ...baseTemplate, state: "disabled" as const };
-		expect(buildHeaderString(config, disabledTemplate, basePaths)).toBe("");
+		expect(
+			buildHeaderString(config, disabledTemplate, basePaths),
+		).toBeUndefined();
 	});
 
 	test("includes language label when showLanguage=true", () => {
@@ -138,7 +154,7 @@ describe("buildHeaderString()", () => {
 		expect(header).not.toContain("—");
 	});
 
-	test("includes role when matching role glob and showRoles=true", () => {
+	test("includes role when role glob matches and showRoles=true", () => {
 		const config = makeDefaultConfig({
 			showRoles: true,
 			roles: {
@@ -156,9 +172,9 @@ describe("buildHeaderString()", () => {
 		expect(header).toContain("React component");
 	});
 
-	test("omits role when showRoles=false", () => {
+	test("omits role when no role glob matches and showRoles=true", () => {
 		const config = makeDefaultConfig({
-			showRoles: false,
+			showRoles: true,
 			roles: {
 				component: {
 					glob: "src/components/*",
@@ -167,7 +183,7 @@ describe("buildHeaderString()", () => {
 			},
 		});
 
-		const paths = makePaths("Button.tsx", "src/components");
+		const paths = makePaths("Button.tsx", "src/overrides");
 		const roleLabel = findRoleLabel(config, paths);
 		const header = buildHeaderString(config, baseTemplate, paths, roleLabel);
 
@@ -198,5 +214,64 @@ describe("buildHeaderString()", () => {
 
 		// But the role still matched via relative path
 		expect(header).toContain("React component");
+	});
+
+	test("returns undefined when headerTemplate missing", () => {
+		const config = makeDefaultConfig();
+
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars -- intentional omit for test
+		const { headerTemplate: _unusedHeaderTemplate, ...rest } = baseTemplate;
+		const template = { ...rest }; // headerTemplate is now absent
+
+		// @ts-expect-error intentionally passing object without headerTemplate
+		const header = buildHeaderString(config, template, basePaths);
+
+		expect(header).toBeUndefined();
+	});
+
+	test("applies custom filePathTemplate", () => {
+		const config = makeDefaultConfig({ filePathTemplate: "📄 ${filePath}" });
+		const header = buildHeaderString(config, baseTemplate, basePaths);
+		expect(header).toContain("📄 src/file.ts");
+	});
+
+	test("applies custom languageTemplate", () => {
+		const config = makeDefaultConfig({ languageTemplate: " <${language}>" });
+		const header = buildHeaderString(config, baseTemplate, basePaths);
+		expect(header).toContain("<TypeScript>");
+	});
+
+	test("applies custom formatTemplate", () => {
+		const config = makeDefaultConfig({ formatTemplate: " [${format}]" });
+		const template = { ...baseTemplate, language: undefined, format: "React" };
+		const header = buildHeaderString(config, template, basePaths);
+		expect(header).toContain("[React]");
+	});
+
+	test("applies custom jointLanguageAndFormatTemplate", () => {
+		const config = makeDefaultConfig({
+			jointLanguageAndFormatTemplate: " (${language}|${format})",
+		});
+		const template = { ...baseTemplate, format: "React" };
+		const header = buildHeaderString(config, template, basePaths);
+		expect(header).toContain("(TypeScript|React)");
+	});
+
+	test("applies contextTemplate when context defined", () => {
+		const config = makeDefaultConfig();
+		const template = { ...baseTemplate, context: "Component" };
+		const header = buildHeaderString(config, template, basePaths);
+		expect(header).toContain("[Component]");
+	});
+
+	test("applies roleTemplate when showRoles=true", () => {
+		const config = makeDefaultConfig({ roleTemplate: " <<${role}>>" });
+		const header = buildHeaderString(
+			config,
+			baseTemplate,
+			basePaths,
+			"React component",
+		);
+		expect(header).toContain("<<React component>>");
 	});
 });
